@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MCKerim</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8">
+    <meta name="keywords" content="MC, MCKerim, Kerim, Ismail, Oglou, Blog, Games, Apps, Bounce, Back, Blue, Room, Race, Programming, Gamedev, Profil, Projects, Unity3D, Designer, Web-designer, Portfolio, Programmer, Designer">
+    <meta name="description" content="Hey, I'm Kerim Ismail, a professional programmer. This is my personal portfolio. Contact me to work with me.">
+    <meta name="author" content="MCKerim">
+
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script src="testScript.js"></script>
+
+    <!--<input type="checkbox" name="darkModeToggle" id="darkModeToggle">-->
+
+    <!--min-height: 160px um page shifting zu vermeiden-->
+    <div>
+        <div class="circleFrame" id="logoImg">
+            <a href="https://www.instagram.com/mckerim_gamedev/" target="blank"><img src="img/MCKerimLogo.png" alt="MCKerim Logo" width="100%" height="100%"></a>
+        </div>
+    </div>
+
+    <h1 id="Titel">MCKERIM</h1>
+
+    <div class="burger" id="burger">
+        <div class="burgerLine1"></div>
+        <div class="burgerLine2"></div>
+        <div class="burgerLine3"></div>
+    </div>
+
+    <div class="navBar" id="navBar">
+        <div class="navBarItem" onclick="scrollHome()">HOME</div>
+        <div class="navBarItem" onclick="scrollHome('Skills_Section')">SKILLS</div>
+        <div class="navBarItem" onclick="scrollHome('Projects_Section')">PROJECTS</div>
+        <div class="navBarItem" onclick="scrollHome('About_Section')">ABOUT</div>
+        <div class="navBarItem" onclick="scrollHome('Contact_Section')">CONTACT</div>
+    </div>
+
+    <div id="blackOverlay" class="blackOverlay"></div>
+
+    <br>
+    <div class="flex-Img-Container">
+        <div style="text-align: start; padding-left: 20px; display: flex; flex-direction: column;">
+            <p style="font-size: 70px; font-weight: 600; font-family: monospace; margin-bottom: 5px; margin-top: 0px;">Hello.</p>
+            <!--<p style="color: rgb(255,105,97); font-weight: bold;">THIS WEBSITE IS UNDER CONSTRUCTION.</p>-->
+            <p class="firstText" >
+                I'm <span style="color: rgb(255,105,97);">Kerim Ismail</span>, the man behind MCKerim.<br>
+                <span id="jobVorText" class="jobText">I work as a professional 
+</span><span id="jobText"></span><span id="blink" style="font-weight: bold;">|</span><br>
+                You can find out more about me and my projects on this website.<br>
+                <a onclick="scrollHome('Contact_Section')" style="cursor: pointer;">Contact me</a> if you need a programmer for your project!
+            </p>
+            <button class="projectsButton" onclick="scrollHome('Projects_Section')">MY PROJECTS</button>
+        </div>
+        
+        <div class="imageFrame noAnim" style="background-color: #1b1811; overflow: visible;">
+            <img class="profilePic" src="img/Profil.png" alt="Profile Pic">
+        </div>
+    </div>
+
+    <!--########################################################   SKILLS-->
+
+    <br/>
+    <h2 id="Skills_Section">SKILLS</h2>
+    <!--<p style="margin-left: 10%; margin-right: 10%;">
+        I have skills in:<br>
+        <span title="Mostly in unity">GAME-DEVELOPMENT</span>    -    WEB-DESIGN    -    MOBILE-APPS    -    UNITY-3D    -    ARDUINO
+    </p>-->
+    
+    <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+        <div style="position: relative;">
+            <img class="grayIcons" src="img/SVG-Icons/icon-java-kaffeetassenlogo.svg" alt="Java"></img>
+            <span class="popuptext"><strong>JAVA SKILLS:</strong><br><br> -Most Experience<br>-School and University</span>
+            <p style="font-weight: bold; margin-top: 10px;">JAVA</p>
+        </div>
+        <div style="position: relative;">
+            <img class="grayIcons" src="img/SVG-Icons/icon-c++.svg" alt="C++">
+            <span class="popuptext"><strong>C++ SKILLS:</strong><br><br> -Arduino</span>
+            <p style="font-weight: bold; margin-top: 10px;">C++</p>
+        </div>
+        <div style="position: relative;">
+            <img class="grayIcons" src="img/SVG-Icons/icon-arduino.svg" alt="Arduino">
+            <span class="popuptext"><strong>ARDUINO SKILLS:</strong><br><br> -Basic understanding<br>-Many home Projects</span>
+            <p style="font-weight: bold; margin-top: 10px;">ARDUINO</p>
+        </div>
+    </div>
+    <br>
+    <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+        <div style="position: relative;">
+            <img class="grayIcons" src="img/SVG-Icons/icon-javascript.svg" alt="Java-Script">
+            <span class="popuptext"><strong>JAVA-SCRIPT SKILLS:</strong><br><br> -Basic understanding<br>-Web Applications</span>
+            <p style="font-weight: bold; margin-top: 10px;">JAVA-S</p>
+        </div>
+        <div style="position: relative;">
+            <img class="grayIcons" src="img/SVG-Icons/icon-html-5.svg" alt="Html-5">
+            <span class="popuptext"><strong>HTML-5 SKILLS:</strong><br><br> -Basic understanding<br>-This Website was made by me</span>
+            <p style="font-weight: bold; margin-top: 10px;">HTML-5</p>
+        </div>
+        <div style="position: relative;">
+            <img class="grayIcons" src="img/SVG-Icons/icon-css3.svg" alt="Css-3">
+            <span class="popuptext"><strong>CSS-3 SKILLS:</strong><br><br> -Basic understanding<br>-Responsive Web design</span>
+            <p style="font-weight: bold; margin-top: 10px;">CSS-3</p>
+        </div>
+    </div>
+    <br>
+    <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+        <div style="position: relative;">
+            <img class="grayIcons" src="img/SVG-Icons/icon-c-sharp-logo.svg" alt="C#">
+            <span class="popuptext"><strong>C# SKILLS:</strong><br><br> -Unity 3D<br>-Programmed many Apps and Games</span>
+            <p style="font-weight: bold; margin-top: 10px;">C#</p>
+        </div>
+        <div style="position: relative;">
+            <img class="grayIcons" src="img/SVG-Icons/icon-unity.svg" alt="Unity-3D">
+            <span class="popuptext"><strong>UNITY-3D SKILLS:</strong><br><br> -PC and Mobile Games<br>-Play in App Store</span>
+            <p style="font-weight: bold; margin-top: 10px;">UNITY-3D</p>
+        </div>
+        <div style="position: relative;">
+            <img class="grayIcons" src="img/SVG-Icons/icon-blender-3d.svg" alt="Blender">
+            <span class="popuptext"><strong>BLENDER SKILLS:</strong><br><br> -Basic understanding<br>-Low Poly Models</span>
+            <p style="font-weight: bold; margin-top: 10px;">BLENDER</p>
+        </div>
+    </div>
+
+    <!--########################################################   PROJECTS-->
+
+    <br/>
+    <h2 id="Projects_Section">PROJECTS</h2>
+    <p style="text-align: center; width: 70%; margin: auto">
+        These are my latest projects. <span style="color: rgb(255,105,97);">Hover</span> over them to reveal more information.
+    </p>
+
+    <br>
+
+    <div>
+        <button id="pressedOnStart" class="filterButton" onclick="showProjects(this, 'ShowAll')">Show All</button>
+        <button class="filterButton" onclick="showProjects(this, 'Game')">Game</button>
+        <button class="filterButton" onclick="showProjects(this, 'App')">App</button>
+        <button class="filterButton" onclick="showProjects(this, 'Website')">Website</button>
+        <button class="filterButton" onclick="showProjects(this, 'Electronic')">Electronic</button>
+        <button class="filterButton" onclick="showProjects(this, 'Fiverr')">Fiverr</button>
+
+        <!--
+        <button class="filterButton" onclick="showProjects(this, 'Java')">Java</button>
+        <button class="filterButton" onclick="showProjects(this, 'CPlusPlus')">C++</button>
+        <button class="filterButton" onclick="showProjects(this, 'Arduino')">Arduino</button>
+        <button class="filterButton" onclick="showProjects(this, 'JS')">Java-Script</button>
+        <button class="filterButton" onclick="showProjects(this, 'HTML5')">HTML-5</button>
+        <button class="filterButton" onclick="showProjects(this, 'CSS3')">CSS-3</button>
+        <button class="filterButton" onclick="showProjects(this, 'C#')">C#</button>
+        <button class="filterButton" onclick="showProjects(this, 'Unity-3D')">Unity-3D</button>
+        <button class="filterButton" onclick="showProjects(this, 'Blender')">Blender</button>
+        -->
+
+    </div>
+
+    <div id="Projects_Pictures" class="flex-Img-Container" style="margin-top: 20px;">
+            <div class="imageFrame">
+                <div class="tags">Unity-3D C# Game App Website</div>
+                <img class="projectImg" src="img/BounceBackBlueIngame.jpg" alt="Bounce Back Blue Image" width="100%" height="100%">
+                <div class="projectInfo">
+                    <br>
+                    <strong>BOUNCE BACK BLUE </strong>
+                    <br>This App was made in Unity-3D
+                    <button onclick="window.open('Pages/BounceBackBlue/index.html');">View Page</button>
+                    <button disabled>See Code</button>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-unity.svg" alt="Unity-3D" height="40px" width="40px" style="margin: 0px">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-c-sharp-logo.svg" alt="C#" height="40px" width="40px" style="margin: 0px">     
+                    </div>
+                </div>
+            </div>
+
+            <div class="imageFrame" style="background-color: #edece6;">
+                <div class="tags">JS HTML5 CSS3 Game Website</div>
+                <img class="projectImg" src="img/MCKerims game of life Screen.PNG" alt="MCKerims Game Of Life" width="100%" height="100%">
+                <div class="projectInfo">
+                    <br>
+                    <strong>MCKERIMS GAME OF LIFE</strong>
+                    <br>The original Conways game of life
+                    <button onclick="window.open('Pages/MCKerimsGameOfLife/index.html');" >View Page</button>
+                    <button disabled>See Code</button>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-html-5.svg" alt="HTML-5" height="40px" width="40px" style="margin: 0px">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-javascript.svg" alt="Java-Script" height="40px" width="40px" style="margin: 0px">                                   
+                        <img class="grayIcons" src="img/SVG-Icons/icon-css3.svg" alt="Css-3" height="40px" width="40px" style="margin: 0px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="imageFrame" style="background-color: #edece6;">
+                <div class="tags">JS HTML5 CSS3 Game Website</div>
+                <img class="projectImg" src="img/Snake Game Screen.PNG" alt="Snake Game Web" width="100%" height="100%">
+                <div class="projectInfo">
+                    <br>
+                    <strong>SNAKE GAME WEB</strong>
+                    <br>Snake game with local multiplayer
+                    <button onclick="window.open('Pages/SnakeGameWeb/index.html');" >View Page</button>
+                    <button disabled>See Code</button>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-html-5.svg" alt="HTML-5" height="40px" width="40px" style="margin: 0px">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-javascript.svg" alt="Java-Script" height="40px" width="40px" style="margin: 0px">                                   
+                        <img class="grayIcons" src="img/SVG-Icons/icon-css3.svg" alt="Css-3" height="40px" width="40px" style="margin: 0px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="imageFrame" style="background-color: #edece6;">
+                <div class="tags">JS HTML5 CSS3 Game Website</div>
+                <img class="projectImg" src="img/Circles Game Screen.PNG" alt="Circles Game Image" width="100%" height="100%">
+                <div class="projectInfo">
+                    <br>
+                    <strong>CIRCLES GAME</strong>
+                    <br>Simple Javascript Game
+                    <button onclick="window.open('Pages/CirclesGameWeb/index.html');">View Page</button>
+                    <button disabled>See Code</button>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-html-5.svg" alt="HTML-5" height="40px" width="40px" style="margin: 0px">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-javascript.svg" alt="Java-Script" height="40px" width="40px" style="margin: 0px">                                   
+                        <img class="grayIcons" src="img/SVG-Icons/icon-css3.svg" alt="Css-3" height="40px" width="40px" style="margin: 0px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="imageFrame" style="background-color: #eae0c8;">
+                <div class="tags">Arduino CPlusPlus Game Electronic</div>
+                <img class="projectImg" src="img/SnakeGameArduino.jpg" alt="Snake Game on Arduino" width="100%" height="100%">
+                <div class="projectInfo">
+                    <br>
+                    <strong>SNAKE GAME ARDUINO</strong>
+                    <br>You can play snake on this 8x8 led panel with an joystick
+                    <button disabled>View Page</button>
+                    <button disabled>See Code</button>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-arduino.svg" alt="Arduino" height="40px" width="40px" style="margin: 0px">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-c++.svg" alt="C++" height="40px" width="40px" style="margin: 0px">     
+                    </div>
+                </div>
+            </div>
+
+            <div class="imageFrame" style="max-width: 600px; background-color: #ADB4BF;">
+                <div class="tags">Unity-3D C# Game App Website</div>
+                <img class="projectImg" src="img/RoomRaceIngame.PNG" alt="Room Race Image" width="100%" height="100%">
+                <div class="projectInfo">
+                    <br>
+                    <strong>ROOM RACE</strong>
+                    <br>This FPS was made in Unity
+                    <!--<button onclick="window.open('https:mckerim.itch.io/room-race');">View Page</button>-->
+                    <button onclick="window.open('Pages/RoomRace/index.html');">View Page</button>
+                    <button disabled>See Code</button>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-unity.svg" alt="Unity-3D" height="40px" width="40px" style="margin: 0px">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-c-sharp-logo.svg" alt="C#" height="40px" width="40px" style="margin: 0px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="imageFrame" style="max-width: 600px; background-color: #bebebe;">
+                <div class="tags">Unity-3D C# Game Fiverr</div>
+                <img class="projectImg" src="img/PogGame.PNG" alt="Pog Game Image" width="100%" height="100%">
+                <div class="projectInfo">
+                    <br>
+                    <strong>POG GAME</strong>
+                    <br>This RL Game from the 90's was an order from Fiverr
+                    <!--<button onclick="window.open('https:mckerim.itch.io/room-race');">View Page</button>-->
+                    <button disabled>View Page</button>
+                    <button disabled>See Code</button>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-unity.svg" alt="Unity-3D" height="40px" width="40px" style="margin: 0px">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-c-sharp-logo.svg" alt="C#" height="40px" width="40px" style="margin: 0px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="imageFrame" style="max-width: 600px; background-color: #ffffff;">
+                <div class="tags">Java HTML5 CSS3 Website</div>
+                <img class="projectImg" src="img/ChickenOfPropra.png" alt="Chicken of Propra Image" width="100%" height="100%">
+                <div class="projectInfo">
+                    <br>
+                    <strong>CHICKEN OF PROPRA</strong>
+                    <br>This application is a website writen in java for holiday registration
+                    <!--<button onclick="window.open('https:mckerim.itch.io/room-race');">View Page</button>-->
+                    <button disabled>View Page</button>
+                    <button onclick="window.open('https:github.com/hhu-propra2/praktikum-gruppe-29');">See Code</button>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-html-5.svg" alt="HTML-5" height="40px" width="40px" style="margin: 0px">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-java-kaffeetassenlogo.svg" alt="Java" height="40px" width="40px" style="margin: 0px">                                   
+                        <img class="grayIcons" src="img/SVG-Icons/icon-css3.svg" alt="Css-3" height="40px" width="40px" style="margin: 0px">
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="imageFrame" style="max-width: 600px; background-color: #bebebe;">
+                <div class="tags">HTML5 CSS3 Website</div>
+                <img class="projectImg" src="img/PogGame.PNG" alt="Pog Game Image" width="100%" height="100%">
+                <div class="projectInfo">
+                    <br>
+                    <strong>COCKTAIL MACHINE</strong>
+                    <br>This Machine makes Coktails (When its finished).
+                     Made by <a href="https://www.youtube.com/watch?v=WYFcjIhAQLo" target="blank">GFREAKE</a>
+                    <button onclick="window.open('Pages/CocktailMachine/index.html');">View Page</button>
+                    <button disabled>See Code</button>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-html-5.svg" alt="HTML-5" height="40px" width="40px" style="margin: 0px">
+                        <img class="grayIcons" src="img/SVG-Icons/icon-css3.svg" alt="Css-3" height="40px" width="40px" style="margin: 0px">
+                    </div>
+                </div>
+            </div>-->
+
+            <button class="fiverrButton" onclick="window.open('https://www.fiverr.com/share/zz7vRK')">
+                <div class="tags">Fiverr DontShowOnAll</div>
+                FIVERR
+            </button>
+    </div>
+
+    <!--########################################################   ABOUT-->
+
+    <br/>
+    <h2 id="About_Section">ABOUT</h2>
+    <p style="text-align: justify; width: 70%; margin: auto">
+        Hey I'm Kerim Ismail, a professional programmer. I'm <span id="age">##ERROR: If you can read this, something went wrong##</span> years old, 
+        live in Germany and study computer science at the <a href="https://www.hhu.de/" target="_blank">HHU-Univerity</a> in Düsseldorf. 
+        I speak english since 4th grade. I love programming because of the possibility to be able to create everything you want. 
+        That's the reason why I program a lot at home, as a freelancer for clients or for the University, to learn new things.
+        If you want to know more about me you can read an article written by me on <a href="https://dromjobs.co.uk/gaming/" target="_blank">Drom Jobs</a> 
+        about how to become a Game-Developer.
+        I'm always looking for new exciting projects, so if you want to work with me feel free to contact me below!
+    </p>
+
+    <!--<div id="Projects_Pictures" class="flex-Img-Container">
+        <div class="imageFrame noAnim" style="background-color: #1b1811; max-width: 600px; max-height: 300px;">
+            <img src="img/MCKerimDollarBill.png" alt="MCKerimDollarBill" width="100%" height="100%" style="transform: translateY(-150px);">
+        </div>
+    </div>-->
+
+    <!--########################################################   CONTACT-->
+    <br/>
+    <h2 id="Contact_Section">CONTACT</h2>
+    <p style="text-align: justify; width: 70%; margin: auto">
+        You can get in touch with me via <a href="https://www.instagram.com/mckerim_gamedev/" target="blank">Social Media.</a>
+        On these platforms you can also get a look at my projects, behind the scenes.
+        You want me to develop your dream game, personal website or app? Write me on <a href="https://www.fiverr.com/share/zz7vRK" target="blank">Fiverr!</a>
+        Or just write me an <a href="mailto:MCKerim@gmx.de" target="blank">E-Mail: MCKerim@gmx.de.</a>
+    </p>
+
+    <div class="socialMediaContainer">
+        <a class="socialMedia" href="https://twitter.com/MCKerim5" target="blank">
+            <img src="img/TwitterLogoBlack.png" alt="Twitter: @MCKerim5" style="height: 100%; width: 100%;">
+        </a>
+
+        <a class="socialMedia" href="https://www.instagram.com/mckerim_gamedev/" target="blank" style="max-width: 250px; max-height: 250px;">
+            <img src="img/InstaLogo512.png" alt="Insta: @MCKerim_Gamedev_" style="height: 100%; width: 100%;">
+        </a>
+
+        <a class="socialMedia" href="https://www.fiverr.com/share/zz7vRK" target="blank">
+            <img src="img/FiverrLogoBlack.png" alt="Fiverr: @MCKerim_Gamedev_" style="height: 100%; width: 100%;">
+        </a>
+    </div>
+
+    <!--UNITY WEB GL STUFF gameContainer for prototype 5    gameInstance-->
+    <!--<div class="webgl-content">
+        <div id="gameContainer" style="width: 960px; height: 600px;"></div>
+        <div class="footer">
+          <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+          <div class="title">Prototype 5</div>
+        </div>
+    </div>-->
+
+    <!--some space to scroll past the end-->
+    <!--<div style="height: 500px; width: 100%;"></div>-->
+
+    <footer>© 2020-<span id="copyrightYear"></span> Kerim Ismail Oglou All Rights Reserved</footer>
+
+    <!--Java Script Stuff-->
+    <script src="script.js"></script>
+</body>
+</html>
