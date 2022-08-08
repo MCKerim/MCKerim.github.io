@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Room Race</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <link rel="shortcut icon" href="TemplateData/favicon.png">
+    <link rel="stylesheet" href="TemplateData/style.css">
+
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Neuer Ordner.json", {onProgress: UnityProgress});
+    </script>
+  </head>
+
+  <body>
+    <h1>Room Race</h1>
+
+    <div>
+      <p>
+          Mobile/PC Game by <a href="../../index.html" target="blank">MCKerim</a>
+      </p>
+    </div>
+
+    <div class="webgl-content">
+      <div id="unityContainer" style="width: 960px; height: 600px"></div>
+      <div class="footer">
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+      </div>
+    </div>
+
+    <div class="buttonHolder">
+      <button onclick="window.open('https://play.google.com/store/apps/details?id=com.MCKerim.RoomRace')">APP</button>
+      <button onclick="window.open('https:mckerim.itch.io/room-race')">ITCH IO</button>
+    </div>
+    
+    <footer>© 2020 Kerim Ismail Oglou All Rights Reserved</footer>
+    
+  </body>
+</html>

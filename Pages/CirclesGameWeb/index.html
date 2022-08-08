@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Circles Game</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="titelName">
+        <h1>Circles Game</h1>
+    </div>
+
+    <div class="scoreText" id="scoreTextDiv">
+        <h1 id="scoreText"></h1>
+    </div>
+    
+    <div class="gameOverBackground"><p style="position: absolute;  top: 50%; left: 50%; transform: translate(-50%, -50%);">Game Over</p></div>
+
+    <canvas id="gameCanvasCircles" style="position: fixed; left: 0; top: 0;"></canvas>
+
+    <button id="spawnCircleButton" class="spawnCircleButton" onclick="toggleCircleSpawn()">Start Game</button>
+
+    <script src="circles.js"></script>
+
+</body>
+</html>

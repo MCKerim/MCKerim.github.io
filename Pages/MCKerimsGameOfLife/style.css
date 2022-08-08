@@ -1,0 +1,85 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial;
+}
+
+body{
+    background-color: #edece6;
+    color: #1b1811;
+}
+
+h1{
+    font-size: 50px;
+    margin-top: 10px;
+}
+
+.heading{
+    text-align: center;
+}
+
+.gameField{
+    background-color: #1b1811;
+    display: block;
+    margin: 0px;
+    border: 4px rgb(255,105,97) solid; 
+    outline: 4px #1b1811 solid;
+    opacity: 100%;
+    animation: gameFieldIn 2s ease-in-out 0s 1;
+}
+
+@keyframes gameFieldIn{
+    0%{
+        border-top-color: #1b1811;
+        border-right-color: #1b1811;
+        border-bottom-color: #1b1811;
+        border-left-color: #1b1811;
+    }
+    25%{
+        border-top-color: rgb(255,105,97);
+        border-bottom-color: #1b1811;
+        border-left-color: #1b1811;
+    }
+    50%{
+        border-right-color: rgb(255,105,97);
+        border-left-color: #1b1811;
+    }
+    75%{
+        border-bottom-color: rgb(255,105,97);
+
+    }
+    100%{
+        border-left-color: rgb(255,105,97);
+    }
+}
+
+button{
+    width: 200px;
+    background-color: #1b1811;
+    color: #edece6;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    transition: all 0.4s ease-in-out;
+    letter-spacing: 5px;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 15px;
+    min-height: 50px;
+}
+
+button:hover{
+    transform: scale(1.15);
+    border-width: 4px;
+    border-color: rgb(255,105,97);
+    border-style: solid;
+}
+
+button:active{
+    transform: scale(1.05);
+    border-width: 4px;
+    border-color: rgb(255,105,97);
+    border-style: solid;
+}

@@ -1,0 +1,240 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: #edece6;
+    font-family: Arial;
+    border: none;
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+body{
+    overflow: hidden;
+    background-color: #1b1811;
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: #1b1811;
+    background: #51ffe2;
+}
+  
+::selection {
+    color: #1b1811;
+    background: #51ffe2;
+}
+
+a{
+    color: #51ffe2;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+a:active{
+    color: #47d4bd;
+}
+
+h1{
+    color: #51ffe2;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+div{
+    display: flex;
+    justify-content: center;
+}
+
+#rateButton{
+    position: fixed;
+    top: -100px;
+    right: 30px;
+    background-color: #ff9b18;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    animation: rateButtonIn 1s ease-in-out 8s 1 forwards;
+    box-shadow: #cc7b12 0px 0px 50px 5px;
+    z-index: 1;
+}
+
+#rateButton:hover{
+    transform: scale(1.2);
+    animation: rateButtonIn 1s ease-in-out 8s 1 forwards, rateButtonRotate 1s ease-in-out 0.5s 1;
+}
+
+#rateButton:active{
+    transform: scale(0.9);
+}
+
+@keyframes rateButtonIn{
+    0%{
+        top: -100px;
+    }
+    100%{
+        top: 100px;
+    }
+}
+
+@keyframes rateButtonRotate{
+    0%{
+        transform: scale(1.2) rotate(0deg);
+    }
+    100%{
+        transform: scale(1.2) rotate(360deg);
+    }
+}
+
+#downloadButton{
+    position: fixed;
+    top: 110%;
+    transform: translate(0, -50%);
+    width: 50px;
+    height: 50px;
+    border: 2px solid #51ffe2;
+    border-radius: 25px;
+    color: #51ffe2;
+    background-color: #51ffe2;
+    font-weight: bold;
+    font-size: large;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+
+    text-overflow:inherit;
+
+    animation: downloadButtonIn 1s ease-in-out 2s 1 forwards, downloadButtonWitdh 1s ease-in-out 3.5s 1 forwards;
+    box-shadow: #41cab3 0px 0px 50px 5px;
+    z-index: 2;
+}
+
+#downloadButton:hover{
+    color: #1b1811;
+    letter-spacing: 5px;
+    transform: scale(1.1) translate(0, -50%);
+}
+
+#downloadButton:active{
+    letter-spacing: normal;
+    transform: scale(0.9) translate(0, -50%);
+}
+
+@keyframes downloadButtonIn{
+    0%{
+        top: 110%;
+    }
+    70%{
+        top: 48%;
+    }
+    100%{
+        top: 50%;
+    }
+}
+
+@keyframes downloadButtonWitdh{
+    0%{
+        width: 50px;
+    }
+    100%{
+        width: 200px;
+        color: #1b1811;
+    }
+}
+
+.enemyBlock{
+    position: absolute;
+    top: -100%;
+    left: 50%;
+
+    width: 50px;
+    height: 50px;
+    background-color: rgb(255,105,97);
+    box-shadow: rgb(199, 84, 78) 0px 0px 50px 5px;
+    cursor: crosshair;
+}
+
+#enemy1{
+    left: 10%;
+    animation: enemy1Anim 2s ease-in-out 0.5s infinite;
+}
+
+#enemy2{
+    left: 45%;
+    animation: enemy2Anim 3s ease-in-out 2.5s infinite;
+}
+
+#enemy3{
+    left: 80%;
+    animation: enemy3Anim 2s ease-in-out 1.5s infinite;
+}
+
+@keyframes enemy1Anim{
+    0%{
+        top: -20%;
+    }
+    100%{
+        top: 120%;
+    }
+}
+
+@keyframes enemy2Anim{
+    0%{
+        top: -20%;
+    }
+    100%{
+        top: 120%;
+    }
+}
+
+@keyframes enemy3Anim{
+    0%{
+        top: -20%;
+    }
+    100%{
+        top: 120%;
+    }
+}
+
+#descriptionText{
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 100px;
+    background-color: #1b1811;
+    padding: 20px;
+    width: 80%;
+    text-align: justify;
+    border-radius: 25px;
+}
+
+#moreText{
+    display: none;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #13110c;
+    color: #edece6;
+    font-size: 13px;
+}
+
+@media screen and (min-width: 600px)
+{
+    #descriptionText{
+        font-size: large;
+    }
+    #moreText{
+        display:contents;
+    }
+}

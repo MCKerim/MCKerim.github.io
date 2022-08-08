@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Snake Game Web</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="heading"> 
+        <h1 id="titelText">Snake Game by MCKerim</h1>
+        <br>
+    </div>
+
+    <div style="display: flex; justify-content: space-evenly; margin-top: 40px;">
+        <div>
+            <ul id="snakeSettingsList">
+            </ul>
+        
+            <button onclick="addSnakeButtonPressed()">Add Snake</button>
+            <button onclick="removeSnakeButtonPressed()">Remove Snake</button>
+        </div>
+
+        <canvas class="gameField" id="gameField"></canvas>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 40px;">
+        <button onclick="startGame()" id="timer">Start</button>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

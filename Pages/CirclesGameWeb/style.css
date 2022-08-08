@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    border: none;
+    outline: none;
+}
+
+body{
+    background-color: #edece6;
+    overflow: hidden;
+}
+
+.titelName{
+    text-align: center;
+    margin-top: 30px;
+    border-top: currentColor solid 2px;
+    border-bottom: currentColor solid 2px;
+    font-size: 20px;
+}
+
+.spawnCircleButton{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 50px;
+    font-size: x-large;
+    background-color: #1b1811;
+    color: #edece6;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    transition: all 0.8s ease-in-out, color 0.4s ease-in-out;
+    letter-spacing: 5px;
+    cursor: pointer;
+}
+
+.goDown{
+    top: 90%;
+    transform: translate(-50%, 0%) scale(0.8);
+}
+
+.spawnCircleButton:hover{
+    color: rgb(100, 255, 100);
+}
+
+.goDown:hover{
+    color: rgb(255,105,97);
+}
+
+.gameOverBackground{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    z-index: -2;
+    font-size: 20vw;
+    font-weight: bold;
+    color: #edece6;
+}
+
+@keyframes death{
+    0%{
+        background-color: #edece6;
+    }
+    50%{
+        background-color: rgb(255,105,97);
+    }
+    100%{
+        background-color: #edece6;
+    }
+}
+
+.scoreText{
+    text-align: center; 
+    margin-top: 30px; 
+    font-size: 20px; 
+    color: rgba(255,105,97);
+}
+
+.animateScore{
+    animation: scored 1s ease-in-out infinite;
+}
+
+@keyframes scored{
+    0%{
+        transform: translateY(0px) scale(1);
+    }
+    25%{
+        transform: translateY(-20px) scale(1.3);
+    }
+    50%{
+        transform: translateY(0px) scale(1);
+    }   
+    75%{
+        transform: translateY(-5px) scale(1.1);
+    }
+    100%{
+        transform: translateY(0px) scale(1);
+    }
+}
