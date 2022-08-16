@@ -6,6 +6,9 @@ gameFieldCanvas.width = 500;
 
 var snakeSettingsList = document.getElementById("snakeSettingsList");
 
+var pointsForFood = 3;
+var minAmountOfSnakesToPlay = 1;
+
 function addSnakeButtonPressed() {
     if (snakes.length < keyPrefabs.length && !gameIsRunning) {
         var newSnake = new Snake(snakes.length, colorPrefabs[snakes.length][0], colorPrefabs[snakes.length][1]);
@@ -154,9 +157,12 @@ function Snake(personalId, newColor, newBodyColor) {
     this.checkForFood = function () {
         if (this.pos.x === food.pos.x && this.pos.y === food.pos.y) {
             food.newPos();
-            var snakePart1 = new SnakePart(this.pos.x, this.pos.y, this.bodyColor);
-            bodyParts.push(snakePart1);
-            score++;
+
+            for(let i=0; i < pointsForFood; i++){
+                var snakePart1 = new SnakePart(this.pos.x, this.pos.y, this.bodyColor);
+                bodyParts.push(snakePart1);
+                score++;
+            }
 
             if (highscore < score) {
                 highscore = score;
@@ -382,7 +388,7 @@ function Food() {
     this.newPos();
 }
 
-const FRAMES_PER_SECOND = 15;
+const FRAMES_PER_SECOND = 10;
 const FRAME_MIN_TIME = (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
 var lastFrameTime = 0;
 
@@ -422,7 +428,6 @@ function gameLoop(time) {
     window.requestAnimationFrame(gameLoop);
 }
 
-var minAmountOfSnakesToPlay = 1;
 function addStartSnakes() {
     for (let i = 0; i < minAmountOfSnakesToPlay; i++) {
         addSnakeButtonPressed();
