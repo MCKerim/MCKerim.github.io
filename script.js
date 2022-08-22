@@ -2,13 +2,13 @@
 logoImgFadeOut();
 
 function logoImgFadeIn() {
-    var logo = document.getElementById("logoImg");
+    let logo = document.getElementById("logoImg");
     logo.className += " active";
     setTimeout(logoImgFadeOut, 1250);
 }
 
 function logoImgFadeOut(){
-    var logo = document.getElementById("logoImg");
+    let logo = document.getElementById("logoImg");
     logo.className = logo.className.replace(" active", "");
     setTimeout(logoImgFadeIn, 1250);
 }
@@ -21,10 +21,10 @@ document.getElementById("copyrightYear").innerHTML = date.getFullYear();
 updateAge("age", 2000, 8, 12);
 function updateAge(id, year, month, day)
 {
-    var date = new Date();
-    var birthday = new Date(year, month-1, day);
+    let date = new Date();
+    let birthday = new Date(year, month-1, day);
 
-    var age = date.getFullYear() - birthday.getFullYear();
+    let age = date.getFullYear() - birthday.getFullYear();
     if(date.getMonth() < birthday.getMonth())
     {
         age--;
@@ -38,11 +38,11 @@ function updateAge(id, year, month, day)
 }
 
 //Job text writing animation
-let jobText = document.getElementById("jobText");
-let targetTextArr = ["Web-Designer.", "Web-Developer. ",  "Programmer.", "Programmer;", "Developer.", "Game-Developer.", "Game-Designer.", "UI/UX-Designer", "console.log(" + '"' + "Hello World!" + '"' + ");"];
-let targetText = "";
-let randomNumber = 0;
-let lastRandomNumber = 0;
+var jobText = document.getElementById("jobText");
+const targetTextArr = ["Web-Designer.", "Web-Developer. ",  "Programmer.", "Programmer;", "Developer.", "Game-Developer.", "Game-Designer.", "UI/UX-Designer", "console.log(" + '"' + "Hello World!" + '"' + ");"];
+var targetText = "";
+var randomNumber = 0;
+var lastRandomNumber = 0;
 
 setTimeout(() =>{changeText()}, 4000);
 function changeText(){
@@ -55,7 +55,7 @@ function changeText(){
     addChar(jobText, targetText, 0);
 }
 
-function addChar(currentText, targetText = "", number){
+function addChar(currentText, targetText="", number=0){
     blink = false;
     if(currentText.innerHTML.length === targetText.length)
     {
@@ -187,7 +187,7 @@ function showProjects(button, tag)
     button.classList.add("pressed");
 
     for (let i = 0; i < projectsList.length; i++) {
-        var currentTags = projectsList[i].getElementsByClassName("tags")[0].innerHTML;
+        let currentTags = projectsList[i].getElementsByClassName("tags")[0].innerHTML;
 
         if(currentTags.match(tag) || (tag === "ShowAll" && !currentTags.match("DontShowOnAll")))
         {
