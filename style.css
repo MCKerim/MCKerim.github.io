@@ -15,35 +15,35 @@ body {
 
 ::-webkit-scrollbar {
     width: 16px;
-  }
+}
   
-  ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background-color: #edece6;
     border: 2px solid #2c281d;
-  }
+}
   
-  ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: #2c281d;
     border: 2px solid #2c281d;
-  }
+}
   
-  ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background-color: rgb(255,105,97);
-  }
+}
 
-  ::-webkit-scrollbar-corner{
+::-webkit-scrollbar-corner{
     background-color: #2c281d;
-  }
+}
 
-  ::-moz-selection { /* Code for Firefox */
+::-moz-selection { /* Code for Firefox */
     color: rgb(255,105,97);
     background: #1b1811;
-  }
+}
   
-  ::selection {
+::selection {
     color: rgb(255,105,97);
     background: #1b1811;
-  }
+}
 
 @keyframes Titel{
     0% {
@@ -59,6 +59,20 @@ body {
         color: white;
         letter-spacing: 15px;
     }
+}
+
+a{
+    color: rgb(255,105,97);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+a:active{
+    color: rgb(255, 161, 154);
 }
 
 /*Black Chocolate #1b1811 Cynical Black #171717 Night Slate Black #040707*/
@@ -85,6 +99,25 @@ h2{
 p{
     font-size: 20px;
     /*background-color: rgba(0, 0, 0, 0.1);*/
+}
+
+.highlightText{
+    color: rgb(255,105,97);
+}
+
+.homeSectionTextContainer{
+    text-align: start;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.greetingText{
+    font-size: 70px;
+    font-weight: 600;
+    font-family: monospace;
+    margin-bottom: 5px;
+    margin-top: 0px;
 }
 
 .projectsButton{
@@ -186,17 +219,6 @@ p{
     }
 }
 
-footer {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 25px 0px;
-    background-color: #13110c;
-    color: #edece6;
-    margin-top: 50px;
-    font-size: 13px;
-}
-
 img{
     -webkit-user-drag: none;
     transition: all 0.4s ease-in-out;
@@ -224,6 +246,11 @@ img{
     animation: none;
 }
 
+.homeProfileImgFrame{
+    background-color: #1b1811; 
+    overflow: visible;
+}
+
 @keyframes projectsAnimIn{
     0%{
         transform: scale(0.1);
@@ -240,7 +267,7 @@ img{
 }
 
 .imageFrame:hover {
-    /*Oder mach scale 1.2*/
+    /*Oder scale 1.2*/
     transform: translateY(-10px);
     box-shadow: rgb(255,105,97) 0px 0px 0px 10px, rgba(0, 0, 0, 0.7) 0px 40px 50px, rgba(0, 0, 0, 1) 0px 0px 20px;
 }
@@ -250,11 +277,11 @@ img{
     height: 250px;
 }
 
-/*.imageFrame:hover .projectImg{
-    filter: blur(1.5px);
-}*/
+.imageFrame:hover .projectImg{
+    filter:grayscale(100%);
+}
 
-.flex-Img-Container {
+.flexImgContainer {
     width: 70%;
     display: flex;
     flex-direction: row;
@@ -264,8 +291,30 @@ img{
     margin: auto;
 }
 
+.projectsFlexImgContainer{
+    margin-top: 20px;
+}
+
 .tags{
     display: none;
+}
+
+.projectsSectionText{
+    text-align: center; 
+    width: 70%; 
+    margin: auto;
+}
+
+.aboutSectionText{
+    text-align: justify; 
+    width: 70%; 
+    margin: auto;
+}
+
+.contactSectionText{
+    text-align: justify; 
+    width: 70%; 
+    margin: auto;
 }
 
 .filterButton{
@@ -393,15 +442,14 @@ img{
     box-shadow: rgba(255,105,97, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.2) 0px 0px 50px 10px;
 }
 
-    .circleFrame:hover {
-        /*border-color: rgb(255,105,97);
-        border-width: 10px;
-        margin-bottom: 1px;
-        margin-top: 1px;*/
-        box-shadow: rgba(255,105,97, 100) 0px 0px 0px 10px, rgba(0, 0, 0, 0.2) 0px 0px 50px 10px;
-        border-color: white;
-
-    }
+.circleFrame:hover {
+    /*border-color: rgb(255,105,97);
+     border-width: 10px;
+    margin-bottom: 1px;
+    margin-top: 1px;*/
+    box-shadow: rgba(255,105,97, 100) 0px 0px 0px 10px, rgba(0, 0, 0, 0.2) 0px 0px 50px 10px;
+    border-color: white;
+}
 
 .active {
     border-color: white;
@@ -496,36 +544,34 @@ img{
     transform: scale(1.2);
 }
 
-a{
-    color: rgb(255,105,97);
-    text-decoration: none;
+.grayIconsContainer{
+    display: flex; 
+    justify-content: space-evenly; 
+    flex-wrap: wrap;
 }
 
-a:hover{
-    text-decoration: underline;
+.grayIconContainer{
+    position: relative;
 }
 
-a:active{
-    color: rgb(255, 161, 154);
-}
-
-.grayIcons{
+.grayIcon{
     filter: grayscale(100%);
     transition: all 0.3s ease-in-out;
     cursor: crosshair;
+    margin: 0px;
 }
 
-.grayIcons:hover{
+.grayIcon:hover{
     filter: grayscale(0%);
     transform: scale(1.2);
 }
 
-.grayIcons:hover + .popuptext{
+.grayIcon:hover + .popupText{
     opacity: 100%;
     transform: translate(-50%, -110%);
 }
 
-.popuptext{
+.popupText{
     min-width: 200px;
     background-color: #1b1811;
     color: white;
@@ -539,10 +585,9 @@ a:active{
     opacity: 0%;
     transition: all 0.3s ease-in-out;
     pointer-events: none;
-
 }
 
-.popuptext::after {
+.popupText::after {
     content: "";
     position: absolute;
     top: 99%;
@@ -553,6 +598,11 @@ a:active{
     border-style: solid;
     border-color: #1b1811 transparent transparent transparent;
     pointer-events: none;
+}
+
+.skillIconTitel{
+    font-weight: bold; 
+    margin-top: 10px;
 }
 
 .burger{
@@ -599,6 +649,17 @@ a:active{
 
 .jobText{
     white-space: normal;
+}
+
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 25px 0px;
+    background-color: #13110c;
+    color: #edece6;
+    margin-top: 50px;
+    font-size: 13px;
 }
 
 #darkModeToggle{
@@ -662,7 +723,7 @@ a:active{
         padding: 15px 0px;
     }
 
-    .grayIcons{
+    .grayIcon{
         margin: 0px 30px;
     }
 
@@ -670,7 +731,7 @@ a:active{
         min-width: 130px;
     }
 
-    .firstText{
+    .homeSectionText{
         min-height: 184px;
     }
 

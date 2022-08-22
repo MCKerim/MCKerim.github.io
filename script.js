@@ -1,3 +1,4 @@
+//Logo border fade animation
 logoImgFadeOut();
 
 function logoImgFadeIn() {
@@ -12,20 +13,13 @@ function logoImgFadeOut(){
     setTimeout(logoImgFadeIn, 1250);
 }
 
-function inputChanged()
-{
-    var inputText = document.getElementById("inputText").value;
-    document.getElementById("Titel").textContent = inputText;
-
-    var inputColor = document.getElementById("inputColor").value;
-    document.getElementById("Titel").style.color = inputColor;
-}
-
+//Copyright year updater
 var date = new Date();
 document.getElementById("copyrightYear").innerHTML = date.getFullYear();
 
-getAge("age", 2000, 8, 12);
-function getAge(id, year, month, day)
+//Age updater
+updateAge("age", 2000, 8, 12);
+function updateAge(id, year, month, day)
 {
     var date = new Date();
     var birthday = new Date(year, month-1, day);
@@ -43,11 +37,7 @@ function getAge(id, year, month, day)
     !(age > 0) ? console.log("ERROR: cannot calculate age.") : document.getElementById(id).innerHTML = age;
 }
 
-function facebookClicked()
-{
-    alert("Please dont try to write me on Facebook. I dont like it.")
-}
-
+//Job text writing animation
 let jobText = document.getElementById("jobText");
 let targetTextArr = ["Web-Designer.", "Web-Developer. ",  "Programmer.", "Programmer;", "Developer.", "Game-Developer.", "Game-Designer.", "UI/UX-Designer", "console.log(" + '"' + "Hello World!" + '"' + ");"];
 let targetText = "";
@@ -91,7 +81,6 @@ function removeChar(currentText)
     {
         currentText.innerHTML = currentText.innerHTML.substring(0, currentText.innerHTML.length-1);
         setTimeout(() =>{blink = true}, 150);
-
         setTimeout(() =>{changeText()}, 1500);
     }
     else if(currentText.innerHTML.length === 2)
@@ -112,26 +101,27 @@ function removeChar(currentText)
 
 var thing = document.getElementById("blink");
 var blink = true;
-removething();
-function removething()
+updateBlinker();
+function updateBlinker()
 {
     if(!blink)
     {
         thing.innerHTML = "|";
-        setTimeout(()=>{removething()}, 10);
+        setTimeout(()=>{updateBlinker()}, 10);
     }
     else if(thing.innerHTML === "|")
     {
         thing.innerHTML = "";
-        setTimeout(()=>{removething()}, 500);
+        setTimeout(()=>{updateBlinker()}, 500);
     }
     else
     {
         thing.innerHTML = "|";
-        setTimeout(()=>{removething()}, 500);
+        setTimeout(()=>{updateBlinker()}, 500);
     }
 }
 
+//Navigation bar
 var burger = document.getElementById("burger");
 var navBar = document.getElementById("navBar");
 var blackOverlay = document.getElementById("blackOverlay");
@@ -176,12 +166,13 @@ function scrollHome(targetId)
     });
 }
 
+//Projects filter buttons
 var projectsPictures = document.getElementById("Projects_Pictures");
 var projectsList = projectsPictures.children;
 var lastButton;
-var pressedOnStart = document.getElementById("pressedOnStart");
+var selectedOnStart = document.getElementById("selectedOnStart");
 
-showProjects(pressedOnStart, "ShowAll");
+showProjects(selectedOnStart, "ShowAll");
 function showProjects(button, tag)
 {  
     if(lastButton === undefined)
@@ -208,5 +199,3 @@ function showProjects(button, tag)
         }
     }
 }
-
-//document.body.scrollTop > 20 || document.documentElement.scrollTop > 20              document.body.scrollTop = 0;document.documentElement.scrollTop = 0;
