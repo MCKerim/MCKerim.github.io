@@ -199,3 +199,20 @@ function showProjects(button, tag)
         }
     }
 }
+
+function toggleDarkMode(toggle){
+    var r = document.querySelector(':root');
+    if(toggle.checked)
+    {
+        r.style.setProperty('--main-color', '#000000');
+        r.style.setProperty('--second-color', '#333333');
+        r.style.setProperty('--accent-color', '#b3b3b3');
+        r.style.setProperty('--link-active-color', '#ffffff');
+    }
+    else{
+        r.style.setProperty('--main-color', '#1b1811');
+        r.style.setProperty('--second-color', '#edece6');
+        r.style.setProperty('--accent-color', '#ff6961');
+        r.style.setProperty('--link-active-color', '#ffa19a');
+    }
+}
