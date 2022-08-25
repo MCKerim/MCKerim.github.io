@@ -39,7 +39,7 @@ function updateAge(id, year, month, day)
 
 //Job text writing animation
 var jobText = document.getElementById("jobText");
-const targetTextArr = ["Web-Designer.", "Web-Developer. ",  "Programmer.", "Programmer;", "Developer.", "Game-Developer.", "Game-Designer.", "UI/UX-Designer", "console.log(" + '"' + "Hello World!" + '"' + ");"];
+const targetTextArr = ["Web-Designer.", "Web-Developer. ",  "Programmer.", "Programmer;", "Developer.", "Game-Developer", "Game-Designer.", "UI/UX-Designer", "console.log(" + '"' + "Hello World!" + '"' + ");"];
 var targetText = "";
 var randomNumber = 0;
 var lastRandomNumber = 0;
