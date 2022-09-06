@@ -139,6 +139,21 @@ p{
     color: var(--accent-color);
 }
 
+.animateBlackRed{
+    color: var(--accent-color);
+    animation: animateBlackRedFrames 1s ease-out infinite alternate;
+}
+
+@keyframes animateBlackRedFrames {
+    0% { color: var(--main-color);
+    }
+    30% { text-shadow: var(--accent-color) 0px 0px 0px;
+    }
+    100% { color: var(--accent-color);
+           text-shadow: var(--accent-color) 0px 0px 2.5px;
+    }
+}
+
 .homeSectionTextContainer{
     text-align: start;
     padding-left: 20px;
