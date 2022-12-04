@@ -204,9 +204,9 @@ function toggleDarkMode(toggle){
     var r = document.querySelector(':root');
     if(toggle.checked)
     {
-        r.style.setProperty('--main-color', '#000000');
-        r.style.setProperty('--second-color', '#333333');
-        r.style.setProperty('--accent-color', '#b3b3b3');
+        r.style.setProperty('--main-color', '#969696');
+        r.style.setProperty('--second-color', '#1d1d1d');
+        r.style.setProperty('--accent-color', '#ffffff');
         r.style.setProperty('--link-active-color', '#ffffff');
     }
     else{
