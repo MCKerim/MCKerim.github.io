@@ -31,7 +31,7 @@
     background-color: #edece6;
     border: 2px solid #1b1811;
     border-radius: 50%;
-  }
+}
 
 .darkModeToggle > input:checked {
     background-color: #1b1811;
@@ -460,6 +460,7 @@ img{
     margin-bottom: 10px;
     background-color: transparent;
     border: var(--main-color) solid 2px;
+    color: var(--main-color);
     border-radius: 20px;
     outline: none;
     transition: all 0.3s ease-in-out;
