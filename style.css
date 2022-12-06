@@ -452,6 +452,15 @@ img{
     font-size: 15px;
 }
 
+.projectInfoDescription{
+    margin: 0px;
+    padding: 0px;
+    align-self: center;
+    width: 90%;
+    color: var(--main-color);
+    font-size: 15px;
+}
+
 .projectInfo button{
     width: 60%; 
     height: 15%;
