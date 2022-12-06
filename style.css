@@ -268,7 +268,7 @@ p{
     }
 }
 
-.resumeButton{
+.CVButton{
     width: 250px;
     font-size: x-large;
     background-color: var(--accent-color);
@@ -288,13 +288,13 @@ p{
     z-index: 1;
 }
 
-.resumeButton:hover{
+.CVButton:hover{
     transform: scale(1.2);
     letter-spacing: 4px;
     box-shadow: var(--accent-color) 0px 0px 30px;
 }
 
-.resumeButton:active{
+.CVButton:active{
     transform: scale(1.1);
     letter-spacing: 2px;
     box-shadow: var(--accent-color) 0px 0px 25px;
