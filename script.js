@@ -172,7 +172,7 @@ var projectsList = projectsPictures.children;
 var lastButton;
 var selectedOnStart = document.getElementById("selectedOnStart");
 
-showProjects(selectedOnStart, "ShowAll");
+showProjects(selectedOnStart, "Proudest");
 function showProjects(button, tag)
 {  
     if(lastButton === undefined)
