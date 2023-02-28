@@ -1,0 +1,74 @@
+::-moz-selection { /* Code for Firefox */
+    color: #edece6;
+    background: #1b1811;
+}
+  
+::selection {
+    color: #edece6;
+    background: #1b1811;
+}
+
+body {
+    background-color: #edece6;
+    font-family: Arial;
+    padding: 0px;
+    margin: 0px;
+}
+
+h1 {
+    background-color: #1b1811;
+    color: #edece6;
+    padding: 5px 10px 5px 10px;
+    font-size: 30px;
+}
+
+h2 {
+    border-bottom: 3px solid #1b1811;
+    color: #1b1811;
+    font-size: 20px;
+    padding: 0px 10px 0px 10px;
+    margin-bottom: 5px;
+}
+
+h3 {
+    color: #1b1811;
+    padding: 0px;
+    font-size: 17px;
+    margin: 10px 10px 0px 10px;
+    text-decoration: underline;
+}
+
+p {
+    color: #1b1811;
+    padding: 0px 10px 0px 10px;
+    font-size: 16px;
+    margin: 0px;
+}
+
+.negativ {
+    color: hsl(0, 57%, 57%);
+    font-weight: bold;
+}
+
+.positiv {
+    color: hsl(122, 50%, 40%);
+    font-weight: bold;
+}
+
+.marked {
+    font-weight: bold;
+}
+
+a {
+    background-color: #1b1811;
+    color: #edece6;
+    text-decoration: none;
+    border: 2px solid #1b1811;
+    transition: 0.3s;
+}
+
+a:hover {
+    background-color: #edece6;
+    color: #1b1811;
+}
+  

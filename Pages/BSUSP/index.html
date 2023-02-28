@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BSUSP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="author" content="MCKerim" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<!--    ALLGEMEINE FRAGEN    -->
+<h1>1. Allgemeine Fragen</h1>
+
+<h2>
+    Busmaster- vs. programmed I/O-Datentransfer
+</h2>
+<p>
+    Gerätesteuerung: CPU startet E/A-Auftrag durch Programmierung von Geräteregistern <br>
+    z.B: Kontrollregister, Statusregister, Befehlsregister, Datenregister, Indexregister, Datenpuffer(Anbindung per Busmastertransfer)
+</p>
+<h3>Programmed I/O:</h3>
+<p>
+    -CPU überträgt wortweise Daten aus Hauptspeicher zum Gerät <br>
+    <span class="negativ">-i.d.R. nicht verwendet (Sehr Langsam)</span>
+</p>
+<h3>Busmaster/Direkter Speicherzugriff:</h3>
+<p>
+    -CPU startet nur den Datentransfer <br>
+    -Eigentliche Übertragung direkt zwischen Hauptspeicher und Gerät <br>
+    -Direct Memory Access(DMA) für ISA-Geräte <br>
+    -Busmaster-Transfer für PCI-Geräte <br>
+    <span class="positiv">-CPU weiterarbeiten während Daten nebenläufig übertragen werden</span>
+</p>
+
+<h2>
+    Denial-Of-Service-Attacke mithilfe eines Pufferüberlaufs
+</h2>
+<p>
+    Wie <br>
+    Gegenmaßnahme
+</p>
+
+<h2>
+    Interrupt
+</h2>
+<p>
+    Ereignis das sofort ausgeführt werden soll von der CPU
+</p>
+<h3>Software-Interrupt</h3>
+<p>
+    -Befehl im Programm (z.B: Programm beenden speicher freigeben)
+</p>
+<h3>Hardware-Interrupt</h3>
+<p>
+    -Externes Gerät (z.B: Tastendruck Tastatur)
+</p>
+
+<h2>
+    Betriebssystem
+</h2>
+<h3>Definition</h3>
+<p>
+    -Macht Anwendungen die <span class="marked">Betriebsmittel</span> zugänglich <br>
+    -Abwicklung von Programmen steuern und überwachen <br>
+    -Brücke zw. Hardware und Anwendungen
+</p>
+<h3>Betriebsmittel</h3>
+<p>
+    Ressourcen des Rechensystems <br>
+    Physikalische Betriebsmittel: Speicher, CPU, Geräte, ... <br>
+    Logische Betriebsmittel: Fenster, Dateien, ...
+</p>
+<h3>Aufgaben</h3>
+<p>
+    -Speicherverwaltung <br>
+    -Scheduling <br>
+    -Ressourcenverwalter <br>
+</p>
+<h3>Ziele</h3>
+<p>
+    <span class="marked">Abstraktion:</span> Hardware-unabhängige Schnittstellen <br>
+    <span class="marked">Effizienz:</span> Hardware-Ressourcen effektiv bereitstellen <br>
+    <span class="marked">Zuverlässigkeit:</span> robustes Ausführen von Programmen <br>
+    <span class="marked">Komfort:</span> einfaches Benutzen des Computers <br>
+    <span class="marked">Sicherheit:</span> keine unerlaubten zugriffe <br>
+    <span class="negativ">Zielkonflikte:
+         Komfort vs. Effizienz, 
+         Sicherheit vs. Schnelligkeit, ...</span>
+</p>
+
+<h2>
+    Mikrokern vs. monolithischen Kern
+</h2>
+<p>
+    je 2 Vor/Nachteil <br>
+    Skizzieren Mikrokern-Betriebssystem
+</p>
+
+<h2>
+    Systemaufruf
+</h2>
+<p>
+    Für sehr schnelle Ein- und Ausgaben will man das Umkopieren der Daten zwischen Userund Kernel-Mode vermeiden. Welcher Systemaufruf wird hierfür unter UNIX verwendet
+    und was passiert dabei?
+</p>
+
+
+
+<!--    SCHEDULING    -->
+<h1>2. Scheduling</h1>
+
+<h2>
+    Reentranter Code
+</h2>
+<p>
+    -preemptiver CPU-Entzug kann jederzeit erfolgen <br>
+    -von mehreren Threads gleichzeitig ausführbarer Code <br>
+    -arbeitet korrekt egal wo unterbrochen <br>
+    -muss ggf. synchronisiert werden <br>
+    --globale Variablen vermeiden, weil werden geteilt auf Heap <br>
+    --Zuständ des Threads als lokale var aufm Stack, da jeder Thread hat sein eigenen Stack <br>
+</p>
+
+<h2>
+    Begriff Prozess/Thread
+</h2>
+
+<h2>
+    Prioritätsinversion
+</h2>
+<p>
+    Wann?  <br>
+    Situation auflösen durch Scheduler?
+</p>
+
+<h2>
+    Präemptiver Multitasking
+</h2>
+<p>
+    Wie CPU entzogen?
+</p>
+
+<h2>
+    Threadzustandsdiagramm
+</h2>
+<p>
+    -Skizzieren
+</p>
+
+<h2>
+    Completely Fair Scheduler
+</h2>
+<p>
+    Linux verwendet unter anderem den Completely Fair Scheduler. Erklären Sie dessen Funktionsweise.
+    Gehen Sie darauf ein, wie die rechenbereiten Threads verwaltet, wie ein Thread ausgewählt wird und
+    wie die Prioriäten dynamisch angepasst werden
+</p>
+
+<h2>Ablaufplan</h2>
+<h3>Rate Monotonic Scheduling(RMS)</h3>
+<p>
+    Wiederholen immer wieder
+</p>
+<h3>Round-Robin(RR)</h3>
+<p>
+    Zeitscheibenverfahren danach abwechsekn
+</p>
+<h3>Earliest-Deadline-First(EDF)</h3>
+<p>
+    Erste Deadline erster
+</p>
+<p>
+    -Reserve-Plan?
+</p>
+<p>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2223_Klausur1.pdf" target="blank">
+        1. KLAUSUR 2023
+    </a> 
+    <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2122_Klausur2.pdf" target="blank">
+        2. KLAUSUR 2022
+    </a>
+    <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2122_Klausur1.pdf" target="blank">
+        1. KLAUSUR 2022
+    </a>
+    <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2021_Klausur_2.pdf" target="blank">
+        2. KLAUSUR 2021
+    </a>
+    <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2021_Klausur_1.pdf" target="blank">
+        1. KLAUSUR 2021
+    </a>
+</p>
+
+
+<!--   SPEICHERVERWALTUNG   -->
+<h1>3. Speicherverwaltung</h1>
+
+<h2>
+    Interne und externe Fragmentierung/Verschnitt
+</h2>
+<p>
+
+</p>
+
+<h2>
+    Copy-On-Write Konzept
+</h2>
+<p>
+    Was? <br>
+    Wo? <br>
+    Warum? <br>
+</p>
+
+<h2>
+    Garbage Collection
+</h2>
+<p>
+    Vorraussetzung <br>
+    Mithilfe Skizze wie Mark-And-Swepp-Collector funktioniert <br>
+    beschreiben wie Copying-Collector funkt.
+</p>
+
+<h2>
+    Adressübersetzung
+</h2>
+<p>
+    Bei x86-Prozessoren verwendet die Adressübersetzung bei aktiviertem
+    Paging mehrstufige Seitentabellen. je einen Vor- und
+    Nachteil im Vergleich zu einer einstufigen Adressübersetzung.
+</p>
+
+<h2>
+    Lokalitätsprinzip
+</h2>
+<p>
+    Warscheinlich ist das Dateien gelesen werden die nah beieinander sind <br>
+    => Cachen
+</p>
+
+<h2>
+    Übersetzung virtueller Adressen zu physikalischen Adressen <br>
+    mit Page-Directories/Page-Tables
+</h2>
+<p>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2122_Klausur2.pdf" target="blank">
+        2. KLAUSUR 2022
+    </a>
+    <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2021_Klausur_2.pdf" target="blank">
+        2. KLAUSUR 2021
+    </a>
+</p>
+
+<h2>
+    Addess Space Layout Randomization (ASLR)
+</h2>
+<p>
+    Alle Adressen randomisiert per flag beim compilieren<br>
+    Was? <br>
+    Wieso wurde das Konzept eingeführt?
+</p>
+
+<h2>
+    Partition
+</h2>
+<p>
+    In Betriebssystemen ohne virtuelle Speicherverwaltung werden einzelnen 
+    Programmen sogenannte Partitionen zugeteilt. Skizzieren und erläutern Sie (4 P.)
+    den Inhalt einer Partition.
+</p>
+
+<h2>
+    MMU
+</h2>
+<p>
+    Muss die MMU bei aktiviertem Paging für die Adressberechnung immer auf die Seiten-Tabellen
+    im Hauptspeicher zugreifen?
+</p>
+
+<h2>
+    Schutzarten Paging x86-Prozessoren
+</h2>
+<p>
+    Drei Schutzarten
+</p>
+
+
+<!--   DATEISYSTEME   -->
+<h1>4. Dateisysteme</h1>
+<h2>
+    Inodes
+</h2>
+<p>
+    -Inhalt in einem klassichen UNIX-Dateisystem
+</p>
+
+<h2>
+    NTFS
+</h2>
+<p>
+    Welche vier Bestandteile speichert NTFS für eine kurze Datei? <br>
+    Wie speichert NTFS eine große Datei? Zeichnen Sie dazu auch ein Bild.
+</p>
+
+<h2>
+    Struktur ext2 Partition <br>
+    Struktur FAT16 Partition
+</h2>
+<p>
+    Skizzieren und erläutern
+</p>
+
+<h2>
+    UNIX-Dateisystemstrukturen
+</h2>
+<p>
+    Zeichen: Inodes und Datenblöcke <br>
+    für abgebildeten Dateisystembaum <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2122_Klausur2.pdf" target="blank">
+        2. KLAUSUR 2022
+    </a>
+</p>
+
+<h2>
+    UNIX-Dateisysteme
+</h2>
+<p>
+    -Welche Semantik hat das Setuid-Bit in UNIX-Dateisystemen? Warum (2 P.)
+    sollte dieses Bit aus Sicherheitsgründen nur selten verwendet werden? <br>
+    -Im Dateisystem ext4 werden sogenannte Extents verwendet. Erklären Sie, (2 P.) 
+    welche Informationen für einen Extent gespeichert werden und nennen Sie 
+    einen Vorteil gegenüber der klassischen Multilevel-Index-Allokation 
+    (Inodes mit je einem Zeiger auf einen Block) <br>
+    -Inhalt eines Inodes einem klassischen UNIX-Dateisystem <br>
+    -Im Dateisystem ext4 werden sogenannte Extents verwendet. Erklären Sie, welche Informationen für einen Extent gespeichert werden und nennen Sie einen Vorteil gegenüber der
+    klassischen Multilevel-Index-Allokation (Inodes mit je einem Zeiger auf einen Block
+</p>
+
+<h2>
+    FAT16
+</h2>
+<p>
+    -Skizzieren Struktur FAT16-Partition <br>
+    -Erstellen Sie 
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2122_Klausur1.pdf" target="blank">
+        1. Klausur 2022 
+        -für den gegebenen Ausschnitt einen Auszug der FAT16-Tabelle, welche 
+        die Datei sowie die leeren als auch die defekten nachstehenden Cluster zeigt.
+    </a>
+</p>
+
+
+<!--   SYNCHRONISIERUNG   -->
+<h1>5. Synchronisierung</h1>
+<h2>
+    Kritische Abschnitte
+</h2>
+<p>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2021_Klausur_2.pdf" target="blank">
+        2. KLAUSUR 2021
+    </a>
+</p>
+
+<h2>
+    Leser-Schreiber-Problem, Semaphor-Variablen
+</h2>
+<p>
+
+</p>
+
+
+<!--   PROGRAMMIERAUFGABE  -->
+<h1>6. Programmieraufgabe</h1>
+<p>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2223_Klausur1.pdf" target="blank">
+        1. KLAUSUR 2023
+    </a> 
+    <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2122_Klausur2.pdf" target="blank">
+        2. KLAUSUR 2022
+    </a>
+    <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2122_Klausur1.pdf" target="blank">
+        1. KLAUSUR 2022
+    </a>
+    <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2021_Klausur_2.pdf" target="blank">
+        2. KLAUSUR 2021
+    </a>
+    <br>
+    <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2021_Klausur_1.pdf" target="blank">
+        1. KLAUSUR 2021
+    </a>
+</p>
+</body>
+</html>
