@@ -71,4 +71,12 @@ a:hover {
     background-color: #edece6;
     color: #1b1811;
 }
-  
+
+.themeSection {
+    background-color: #edece6;
+}
+
+.themeSection:nth-child(even) {
+    background-color: #cbc9c2;
+}
+
