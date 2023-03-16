@@ -139,10 +139,54 @@
     <h2>
         Mikrokern vs. monolithischen Kern
     </h2>
+    <h3>
+        Mikrokern Betriebssystem
+    </h3>
     <p>
-        je 2 Vor/Nachteil <br>
-        Skizzieren Mikrokern-Betriebssystem
+        <span class="positiv">Vorteile:</span><br>
+        -Sicherheit, Stabilität <br>
+        -Flexiblität, Erweiterbarkeit<br>
+        -Portierbarkeit<br>
+        <span class="negativ">Nachteile:</span><br>
+        -Langsamer (mehr Kontextwechsel nötig)<br>
+        <br>
+    <pre>
+    +---------------------+
+    |   Nutzerprozesse    |
+    |  +---------------+  |
+    |  |   Dienste     |  |
+    |  +---------------+  |
+    |  +---------------+  |
+    |  |   Treiber     |  |
+    |  +---------------+  |
+    +---------------------+
+    |      Mikrokern      |
+    +---------------------+
+    </pre>
     </p>
+    <h3>
+        Monolithischen Kernel Betriebssystem
+    </h3>
+    <p>
+        <span class="positiv">Vorteile:</span><br>
+        -Geschwindigkeit<br>
+        <span class="negativ">Nachteile:</span><br>
+        -Weniger Sicherheit<br>
+        <br>
+    <pre>
+    +---------------------+
+    |   Nutzerprozesse    |
+    +---------------------+
+    |                     |
+    |                     |
+    |    Monolithischer   |
+    |       Kernel        |
+    |                     |
+    |                     |
+    +---------------------+
+    </pre>
+    </p>
+    
 </div>
 
 <div class="themeSection">
@@ -174,8 +218,68 @@
 
 <div class="themeSection">
     <h2>
-        Begriff Prozess/Thread
+        Prozess vs. Thread
     </h2>
+    <h3>Prozess</h3>
+    <p>
+        -Programm in Ausführung<br>
+        -Kann mehrere Threads enthalten, mind. 1<br>
+        -Eigenen Adressraum<br>
+        -Ressourcenintensiever<br>
+        -Umschalten zwischen Prozessen langsamer(Chaches gespült, Adressraum laden...)<br>
+        
+    </p>
+    <h3>Process Controll Block (PCB)</h3>
+    <p>
+        Verwaltet im Kernel-Space
+    </p>
+    <pre>
+    +---------------------+
+    |        PID          | -> Eindeutig
+    +---------------------+
+    |    Programmname     |
+    +---------------------+
+    |     Adressraum      |\
+    +---------------------+ | -> Zustandsinformationen
+    |   Betriebsmittel    |/-> geöffnete Dateien/Geräte, zum aufräumen
+    +---------------------+
+    |     Priorität       |
+    +---------------------+
+    |     UID und GID     |
+    +---------------------+
+    </pre>
+    <h3>Thread</h3>
+    <p>
+        -Teil eines Prozesses<br>
+        -unabhängig con anderen Threads ausführbar<br>
+        -Hat eigenen Befehlszeiger(Programmfluss)<br>
+        -Hat eigenen Stack<br>
+        -Teilt sich Heap/Speicher und andere Ressourcen<br>
+        -Leightwheigt Process<br>
+        -Für nebenläufige verarbeitung, geht mit Prozessen(fork & pipes) aber schwergewichtig<br>
+        -Warten auf I/O geräte, parallele Berechnung auf mehreren Cores, parallele Einzelaufgaben, http-Requests
+    </p>
+    <h3>Thread Controll Block (TCB)</h3>
+    <p>
+        Verwaltet im Kernel-Space
+    </p>
+    <pre>
+    +---------------------+
+    |        TID          |
+    +---------------------+
+    |    PCB *process     | -> Pointer auf PCB
+    +---------------------+
+    | Instruction Pointer |\
+    +---------------------+ |
+    |        Stack        | | -> Threadzustand (Register, gesichert)
+    +---------------------+ |
+    |  Weitere Register   |/
+    +---------------------+
+    |     Priorität       |
+    +---------------------+
+    |   Ausführungszeit   | -> Wie lange gerechnet
+    +---------------------+
+    </pre>
 </div>
 
 <div class="themeSection">
@@ -183,8 +287,14 @@
         Prioritätsinversion
     </h2>
     <p>
-        Wann?  <br>
-        Situation auflösen durch Scheduler?
+        <pan class="marked">Grund:</pan><br>
+        Wenn ein Prozess mit niedriger Priorität eine Ressource exklusiv belegt hat,<br>
+        die von einem Prozess mit höherer Priorität benötigt wird.<br>
+        Dies führt dazu, dass der Job mit höherer Priorität warten muss und somit seine Priorität nicht mehr berücksichtigt wird.<br>
+        <pan class="marked">Lösung:</pan><br>
+        Eine Methode zur Behebung ist <span class="marked">Prioritätsvererbung</span><br>
+        Hierbei erbt der Job mit niedriger Priorität vorübergehend die höhere <br>
+        Priorität des wartenden Jobs und kann somit seine Arbeit schneller beenden und die Ressource freigeben.<br>
     </p>
 </div>
 
@@ -193,7 +303,8 @@
         Präemptiver Multitasking
     </h2>
     <p>
-        Wie CPU entzogen?
+        Wie CPU entzogen?<br>
+        “Context Switch”, bei dem der Zustand des aktuellen Prozesses gespeichert und der Zustand des nächsten Prozesses geladen wird.
     </p>
 </div>
 
@@ -228,6 +339,10 @@
         Zeitscheibenverfahren danach abwechsekn
     </p>
     <h3>Earliest-Deadline-First(EDF)</h3>
+    <p>
+        Erste Deadline erster
+    </p>
+    <h3>Completely Fair Scheduler(CFS)</h3>
     <p>
         Erste Deadline erster
     </p>
