@@ -88,7 +88,8 @@
         Interrupt
     </h2>
     <p>
-        Ereignis das sofort ausgeführt werden soll von der CPU
+        Ereignis das sofort ausgeführt werden soll von der CPU<br>
+        Das Betriebssystem behandelt Interrupts, indem es den Zustand des Programms sichert, den passenden Interrupt-Handler ausführt und danach den Zustand des Programms wiederherstellt.
     </p>
     <h3>Software-Interrupt</h3>
     <p>
@@ -378,6 +379,164 @@
 
 <div class="themeSection">
     <h2>
+        Speicherhierarchie
+    </h2>
+    <p>
+        Sekunder/Primärspeicher<br>
+        Unterschiedliche Speicherarten in einem Computer(SSD, RAM, Cach, ...)<br>
+        Persistenz, schnelligkeit, wahlfreier zugriff(Random Access), Sequentieller Zugriff(schneller), Kapazität
+    </p>
+    <h2>
+        Anforderungen
+    </h2>
+    <p>
+        Mehrprogrammbetrieb: Teilen sich Arbeitsspeicher<br>
+        unklar welche/wie viele Programme geladen werden<br>
+        <span class="marked">Zuteilung Speicherblöcke: </span> malloc, schnell, wenig Verschnitt<br>
+        <span class="marked">Freigabe Speicherblöcke: </span> free, aufräumen beim Terminieren, manuelles/automatisches Einsammeln<br>
+        Aus/Einlagern inaktiver Prozesse<br>
+        <span class="marked">Relozierung: </span>mithilfe virtueller Speicherverwaltung Prozess an anderen adressen Einlagerbar machen<br>
+    </p>
+    <h2>
+        Begriffe
+    </h2>
+    <p>
+        <span class="marked">Speicherblock: </span>Menge fortlaufender Speicheradressen<br>
+        <span class="marked">Partition: </span>Gesamtspeicherblock für Programm(nicht Festplatte Partition)<br>
+        <span class="marked">Swapping: </span>Aus/Einlagern von Programmen/Partitionen auf Sekunderspeicher<br>
+        <span class="marked">Physikalische(absolute) Speicheradresse: </span>zeigt in physisch vorhandenen Arbeitsspeicher<br>
+        <span class="marked">Logische Speicheradresse: </span>Pos. im Arbeitsspeicher aus sicht des Programms, unabh. von phys. Speicherorganisation<br>
+        <span class="marked">Relative Speicheradresse: </span>Pos. relativ zu einem bekannten Punkt im Programm(i.d.R. Instruction-Pointer)<br>
+    </p>
+
+    <h2>
+        Partitionen im Arbeitsspeicher
+    </h2>
+    <p>
+        Aufteilung des Arbeitsspeichers in gleich/variable große Partitionen für je ein Programm damit gleichzeitig ausführbar sind<br>
+        Bestandteile:<br>
+        <span class="marked">Stack: </span> Funktionsaufrufe(Parameter, lokale Var.)<br>
+        <span class="marked">Heap: </span> Dyn. allozierte Daten(malloc), Heap Blöcke: Header(Länge, Flags, Anzahl eleArray, Typ Zeiger), Nutzdaten<br>
+        <span class="marked">Globals: </span> globale Var.<br>
+        <span class="marked">Text: </span> Code<br>
+    </p>
+    <h3>
+        Statische Partitionierung
+    </h3>
+    <p>
+        während Laufzeit nicht änderbar<br>
+        Programm erhält kleinste in das es hineinpasst<br>
+        Programm wartet in Zuteilungswarteschlange(für jede Patitionsgröße)<br>
+        BS belegt auch eine Partition<br>
+        <span class="positiv">Vorteil: </span>Einfach implementierbar, keine Externe Fragmentierung<br>
+        <span class="negativ">Nachteil: </span>Max. #Prozesse statisch festgelegt, evt. passt Programm nirgends rein, Speicherbedarf eines Programms muss bekannt sein, Interne Fragmentierung<br>
+    </p>
+    <h3>
+        Dynamische Partitionierung
+    </h3>
+    <p>
+        Länge, Anzahl, Anfangsadressen der Partitionen ändert sich dynamisch<br>
+        Programm erhält genauso viel Speicher wie benötigt<br>
+        <span class="positiv">Vorteil: </span>Keine Interne Fragmentierung<br>
+        <span class="negativ">Nachteil: </span>Externe Fragmentierung -> kann durch Neuanordungn behoben werden, aufwendig weil viele verschieben, gelöst durch virtuelle Speicherverwaltung<br>
+    </p>
+
+    <h2>
+        Verwaltung freien Speichers
+    </h2>
+    <p>
+        Bei Freigabe: prüfen ob Nachblöcke frei -> zusammenfassen<br>
+    </p>
+    <h3>
+        Bitvektor/Bitmap
+    </h3>
+    <p>
+        Speicher unterteilt(feste länge: 512B, 4KB)<br>
+        Jeder bit repräsentiert ob einheit full oder nicht: 111001101111000101<br>
+        Je kleiner einheit -> größer Bitvektor, Je größer -> interne Fragmentierung<br>
+        <span class="positiv">Vorteil: </span>Kompakt<br>
+        <span class="negativ">Nachteil: </span>Allokation langsam -> muss nach nullfolgen suchen<br>
+    </p>
+    <h3>
+        Freispeichertabelle
+    </h3>
+    <p>
+        Freie Blöcke in Tabelle verwaltet: Größe | Adresse<br>
+        <span class="positiv">Vorteil: </span>Können var. längen haben <br>
+    </p>
+
+    <h3>
+        Freispeicherliste(Beste)
+    </h3>
+    <p>
+        Freie Heap-Blöcke mit Zeiger verkettet<br>
+        evt. mehrere Listen für vers. größen<br>
+        <span class="positiv">Vorteil: </span>Benötigt kein Speicher<br>
+    </p>
+    <h3>
+        Buddy-System
+    </h3>
+    <p>
+        <span class="marked">Buddys: </span>Zwei gleichgroße benachbarte blöcke<br>
+        Speicher besteht asud 2^kmax Einheiten<br>
+        Speichervergabe in Blockgrößen 2^k<br>
+        Jeweils Liste für Blöcke der Größe 2^k<br>
+        verw. Linux für Physikalische Speicher<br>
+        <span class="positiv">Vorteil: </span>Schnelles verschmelzen<br>
+        <span class="negativ">Nachteil: </span>interne u. externe Fragmentierung<br>
+    </p>
+    <h4>
+        Allokation
+    </h4>
+    <p>
+        1. Aufrunden auf nächste Zweierpotenz 1000Bytes -> 1024<br>
+        2. Erstes freies Stück aus Liste 2^i<br>
+        3. Falls 2^i leer(rekursiv): nächste Größe, halbieren, vordere hälfte zuteilen, hintere liste 2^i anhängen<br>
+    </p>
+    <h4>
+        Freigabe
+    </h4>
+    <p>
+        1. Buddy bestimmen<br>
+        2. Falls belegt -> in liste einhängen, stoppen<br>
+        3. Falls frei -> Vereinigen, gehe zu 1<br>
+    </p>
+    <h2>
+        Auswahlstrategien freier Blöcke
+    </h2>
+    <p>
+        Kriterien: Fragmentierung, Geschwindigkeit
+    </p>
+    <h3>
+        First-Fit
+    </h3>
+    <p>
+        nimmt ersten groß genug, evt. teilen, Ohne: interne Frag. Mit: externe Frag.<br>
+        <span class="positiv">Vorteil: </span>Schnell<br>
+        <span class="negativ">Nachteil: </span>Konzentration belegter stücke am Anfang<br>
+    </p>
+    <h3>
+        Next-Fit
+    </h3>
+    <p>
+        zyklisch durchlaufen: beginnt dort wo letzte aufgehört<br>
+    </p>
+    <h3>
+        Best-Fit
+    </h3>
+    <p>
+        Block der am wenigsten Speicherverschnitt verursacht<br>
+        Freispeicherliste einmal komplett durchlaufen<br>
+        <span class="negativ">Nachteil: </span>Bei zerschneidung seht kleine Stücke<br>
+    </p>
+    <h3>
+        Worst-Fit
+    </h3>
+    <p>
+        Nimm größten Block -> nach zerschneiden noch brauchbar
+    </p>
+
+    <h2>
         Interne und externe Fragmentierung/Verschnitt
     </h2>
     <h3>
@@ -407,14 +566,116 @@
 
 <div class="themeSection">
     <h2>
-        Garbage Collection
+        Garbage Collection (Autom. Freispeichersammlung)
     </h2>
+    <p>
+        Garbage: Kein Pfad zwischen betrachteten Speicherblock und einem Wurzelzeiger<br>
+        Nich adressiebare Blöcke autom. identifizieren u. freigeben(Programm oder Systemweit)<br>
+        Expliziete Rückgabe durch Programmierer fehlerhaft und mühsam<br>
+        -Abbau komplexer Struckturen<br>
+        -Speicherlecks(Memory Leaks): vergessen freizugeben<br>
+        -ungültige Zeiger(dangling pointers): zu früh<br>
+    </p>
+    <h3>
+        GC-Phasen
+    </h3>
+    <p>
+        1.Phase: Garbage Detection<br>
+        2.Phase: Garbage Reclamation<br>
+    </p>
+    <h3>
+        Vorraussetzungen
+    </h3>
+    <p>
+        Referenzen müssen identifiezierbar sein<br>
+        Typsichere Sprache<br>
+        GC muss Aufbau eines Speicherblocks und der Stackframes kennen(Wo zeiger, wo andere Variablen)<br>
+        -Die Info speichert Compiler in Symboltabelle
+    </p>
+    <h3>
+        Wo Anfangen?
+    </h3>
+    <p>
+        Bei Wurzel-Zeiger(root set): Menge aller gültigen Zeigervariablen, Zeiger in globalen Variablen, Alle Zeiger im Stack<br>
+    </p>
+    <h3>
+        Mark & Sweep Algorithmus
+    </h3>
+    <p>
+        Mark: Markiert alle erreichbaren Blöcke im Heap von Wurzelzeigern<br>
+        Makierungsphase muss in einem Stück zu Ende laufen<br>
+        werden im Header makiert<br>
+        Für jeden Wurzelzeiger z:<br>
+        Makiere(z)<br>
+
+        <span class="positiv">Vorteil: </span>Einfach implementiert, Zyklen werden erkannt<br>
+        <span class="negativ">Nachteil: </span>Tiefe Rekursion -> viel Speicher im Keller, Heap wird nicht kompaktiert<br>
+
+        Makiere(block):<br>
+         wenn block markiert dann beende funktion<br>
+         block.mark = 1<br>
+         für jeden block den block ref:<br>
+         Markiere(block)<br>
+
+        Sweep:<br>
+        für jeden Block b, b.mark = 0:<br>
+            Speicherfreigabe(b)<br>
+        Skizze:
+    </p>
+    <img src="../../NotUsedImg/MarkAndSweep.png">
     <p>
         Vorraussetzung <br>
         Mithilfe Skizze wie Mark-And-Swepp-Collector funktioniert <br>
         beschreiben wie Copying-Collector funkt.
     </p>
+
+    <h3>
+        Inkrementeller Mark & Sweep Algorithmus
+    </h3>
+    <p>
+        Nebenläufiges(unterbrechbar)<br>
+        Blau: Block komplett untersucht<br>
+        Rot: Noch nicht inspiziert<br>
+        Grün: Bereits besucht aber nicht alle Nachfolger<br>
+        Terminiert wenn keine grünen Blöcke mehr<br>
+        Erfordert überwachung von Zeigerzuweisung(Wenn blauer block aufeinmal roten block ref.)<br>
+    </p>
+    <h3>
+        Kopierende Freispeichersammlung
+    </h3>
+    <p>
+        Heap in alt und neu unterteilen<br>
+        Alle erreichbaren Blöcke rekursiv in neue Region kopieren<br>
+        Garbage bleibt in alter Region<br>
+        Bei nächsten GC-Aufruf tauschen<br>
+        <span class="positiv">Vorteil: </span>Heap automatisch kompaktifiziert, Speicherallokation einfach(freier Speicher immer ein großer Block), Zyklen eliminiert<br>
+        <span class="negativ">Nachteil: </span>Aufwändig viele kleine Blöcke zu kopieren, logische Adressraum halbiert, GC muss atomar komplett durchlaufen<br>
+    </p>
+    <h3>
+        Inkrementeller Copying-Collector
+    </h3>
+    <p>
+        Pro Aufruf vorgegebene Anzahl Blöcke kopieren(nicht zu lange Programm anhalten)<br>
+        Iterative Lösung<br>
+        Scan-Zeiger: Blöcke bis hier komplett abgearbeitet<br>
+        Free-Zeiger: Blöcke zwischen den sind kopiert aber haben noch zeiger in die alte Region<br>
+        kopierte alte Blöcke verweisen auf ihre Kopie<br>
+        terminiert wenn scan auf free-zeiger trifft<br>
+        <span class="positiv">Vorteil: </span>Heap automatisch kompaktifiziert, Speicherallokation einfach(freier Speicher immer ein großer Block), Zyklen eliminiert<br>
+        <span class="negativ">Nachteil: </span>Zeigerzuweisung überwachen, Datenzugriffe auf kopierte Blöcke überwachen und syncen<br>
+    </p>
+    <h3>
+        Reference Counting Algorithmus
+    </h3>
+    <p>
+        Jeder Speicherblock hat Referenzzähler<br>
+        Garbage wenn Referenzzähler auf null<br>
+        Zeigerzuweisung über Laufzeitfunktion<br>
+        <span class="positiv">Vorteil: </span>Inkrementelle GC möglich, Garbage sofort freigegeben, einfach implementierbar<br>
+        <span class="negativ">Nachteil: </span>Zyklen(könnte ab und zu mark and sweep verwenden), erfordert Aufruf einer Laufzeitroutine<br>
+    </p>
 </div>
+
 
 <div class="themeSection">
     <h2>
