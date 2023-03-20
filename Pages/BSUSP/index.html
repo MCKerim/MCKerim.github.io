@@ -558,9 +558,12 @@
         Copy-On-Write Konzept
     </h2>
     <p>
-        Was? <br>
-        Wo? <br>
-        Warum? <br>
+        Mehrere Prozesse lesen aus gemeinsamen Speicher<br>
+        falls einer schreibt -> Seite kopieren sodass sonst überall gleich bleibt<br>
+        Wichtig bei Fork<br>
+        müssen nicht alle Daten kopiert werden, nur Seitentabellen<br>
+        alle Seitentabelleneinträge auf read only setzen<br>
+        Schreibt einer -> protection Fault -> BS aktivieren -> Kopie erstellen<br>
     </p>
 </div>
 
@@ -623,11 +626,11 @@
         Skizze:
     </p>
     <img src="../../NotUsedImg/MarkAndSweep.png">
-    <p>
+    <h3>
         Vorraussetzung <br>
         Mithilfe Skizze wie Mark-And-Swepp-Collector funktioniert <br>
         beschreiben wie Copying-Collector funkt.
-    </p>
+    </h3>
 
     <h3>
         Inkrementeller Mark & Sweep Algorithmus
@@ -641,9 +644,10 @@
         Erfordert überwachung von Zeigerzuweisung(Wenn blauer block aufeinmal roten block ref.)<br>
     </p>
     <h3>
-        Kopierende Freispeichersammlung
+        Kopierende Freispeichersammlung(Copying-Collector)
     </h3>
     <p>
+        
         Heap in alt und neu unterteilen<br>
         Alle erreichbaren Blöcke rekursiv in neue Region kopieren<br>
         Garbage bleibt in alter Region<br>
@@ -676,25 +680,141 @@
     </p>
 </div>
 
-
 <div class="themeSection">
+    <h2>
+        Paging
+    </h2>
+    <p>
+        logischer(virtueller) Adressraum in gleich große Pages unterteilen<br>
+        Physikalischen in gleich große Page Frames(Kacheln)<br>
+        -Daten einer Page in ein Page Frame sofern geladen<br>
+        Prozesse in viele Pages unterteilt<br>
+        Keine externe Fragmentierung<br>
+        jeweils 1 logischen(virtuellen) Adressraum pro Prozess<br>
+    </p>
     <h2>
         Adressübersetzung
     </h2>
+    <h3>
+        Einfache Seitentabelle
+    </h3>
     <p>
-        Bei x86-Prozessoren verwendet die Adressübersetzung bei aktiviertem
-        Paging mehrstufige Seitentabellen. je einen Vor- und
-        Nachteil im Vergleich zu einer einstufigen Adressübersetzung.
+        Pro Prozess eigene Seitentabelle<br>
+        <span class="negativ">Nachteil: </span>Großer Speicherverbrauch<br>
+        Je 1 Eintrag pro Seite, (Kachelnummer, Präsenz-Bit, dirty&accessed Bit)<br>
+        Teil der logischen Adresse bildet Seitennummer<br>
+    </p>
+    <h3>
+        Zweistufige Adressübersetzung
+    </h3>
+    <p>
+        Hierarische Seitentabellen<br>
+        Ebene 1: Page Directory/Seitenverzeichnis<br>
+        1mal pro Prozess<br>
+        Zeigen auf Tabelle Ebene 2 oder leer<br>
+        Ebene 2: Page Tabels/Seitentabellen<br>
+        können ausgelagert werden<br>
+        dynamisch angelegt/gelöscht<br>
+        Tabelle Kernel Space für jeden<br>
+        Nach Meltdown und Spectre wird BS nicht mehr eingeblendet in Adressraum eigener Adressraum<br>
+        32Bit -> 10 Bit Page Dir. -> 10 Bit Page Table -> 12 Bit Offset<br>
+        <span class="negativ">Nachteil: </span>Langsamer<br>
+    </p>
+    <h3>
+        Invertierte Seitentabellen
+    </h3>
+    <p>
+        Vollständige Seitentabellen viel zu viele einträge(speicher) pro Prozess<br>
+        Besser 1 Eintrag pro Kachel als pro logische Seite<br>
+        1. Eintrag Kachel 0, 2. Eintrag Kachel 1...<br>
+
+    </p>
+    <h3>
+        Translation Lookaside Buffer (TLB)
+    </h3>
+    <p>
+        Puffert übersetzte virtuelle Adressen<br>
+        MMU sucht erst hier -> Seitentabellen (Page Fault)-> BS soll einlagern ->(physikalissche Adresse) gucken ob Kachel im Chache -> Arbeitscpeicher<br>
+        besonderer Schaltkreis für parallele Vergleiche<br>
+        komplett löschen bei Prozess/Adressraumwechsel<br>
     </p>
 </div>
 
 <div class="themeSection">
     <h2>
-        Lokalitätsprinzip
+        Einlagerungsstrategien
+    </h2>
+    <h3>
+        Demand Paging
+    </h3>
+    <h3>
+        Pre Paging
+    </h3>
+    <h3>
+        Kom. Pre/Demand Paging
+    </h3>
+    <p>
+        Pre zu beginn (Programmcode, statische Daten zb) dann Demand
+    </p>
+    <h2>
+        Page Fault
     </h2>
     <p>
-        Warscheinlich ist das Dateien gelesen werden die nah beieinander sind <br>
-        => Cachen
+        MMU erkennt Präsenz-Bit gelöscht -> page fault Exeption -> Thread unterbrochen -> Page-Fault-Handler -> lädt Seite vom Sekundärspeicher
+    </p>
+    <h2>
+        Auslagern
+    </h2>
+    <h3>
+        Not recently used
+    </h3>
+    <p>
+        Accssed-Bit | Dirty-Bit<br>
+        false | false <br>
+        false | True<br>
+        True | false <br>
+        True | True<br>
+    </p>
+    <h3>
+        First-in, First-out
+    </h3>
+    <h3>
+        Least Recently Used(Zeitstempel)
+    </h3>
+    <h3>
+        Thrashing -> Programm zu wenig Kacheln -> ständig Seitenfehler
+    </h3>
+</div>
+
+
+<div class="themeSection">
+    <h2>
+        Shared Memory
+    </h2>
+    <p>
+        Mehrere logische(virtuelle) Seiten auf gleiche Kacheln<br>
+        Zeiger dürfen nur auf shared memory bereich zeigen<br>
+        Zeiger gehen nur wenn die an der selben logischen Adresse eingeblendet werden<br>
+        Muss beim auslagern mehrere Prozesse beachten(Präsenz bit überall löschen)<br>
+    </p>
+</div>
+
+
+<div class="themeSection">
+    <h2>
+        Lokalitätsprinzip
+    </h2>
+    <h3>
+        Zeitliche Lokalität
+    </h3>
+    <p>
+        Daten in naher Zukunft wieder benutzt(Schleifen)
+    </p>
+    <h3>
+        Räumliche Lokalität
+    </h3>
+    <p>
+        Benachbarte Daten in Chache laden(Programmtext)
     </p>
 </div>
 
@@ -716,12 +836,15 @@
 
 <div class="themeSection">
     <h2>
-        Addess Space Layout Randomization (ASLR)
+        Address Space Layout Randomization (ASLR)
     </h2>
     <p>
-        Alle Adressen randomisiert per flag beim compilieren<br>
-        Was? <br>
-        Wieso wurde das Konzept eingeführt?
+        BS vergibt  Programmen zufällige Adressbereiche -> Adressen nicht deterministisch<br>
+        Erschwert Angriffe auf Pufferüberlauf<br>
+        mit Flag -no-pie aus machen <br>
+        Kann mit Bruteforce trotzdem Code einshleusen<br>
+        Raten welche adresse angesprungen wird<br>
+        Chancen verbessern durch NOP = No Operation, rutscht rein<br>
     </p>
 </div>
 
@@ -738,11 +861,27 @@
 
 <div class="themeSection">
     <h2>
-        MMU
+        Memory Management Unit (MMU)
     </h2>
     <p>
+        Funktionseinheit im Prozessor<br>
+        Erledigt Adressübersetzung<br>
+        Überprüft ob Daten ausgelagert wurden<br>
+        ob unerlaubte Zugriffe stattfinden<br>
+
         Muss die MMU bei aktiviertem Paging für die Adressberechnung immer auf die Seiten-Tabellen
         im Hauptspeicher zugreifen?
+    </p>
+</div>
+
+<div class="themeSection">
+    <h2>
+        Virtueller Speicher
+    </h2>
+    <p>
+        Anstatt Dynamische Partitionierung<br>
+        -Programme komplett ein/ausgelagert, #Partitionen = Max Prozesse zu einem Zeitpunkt<br>
+        -> Prozesse größer als Arbeitsspeicher ausführbar<br>
     </p>
 </div>
 
@@ -770,12 +909,66 @@
 
 <div class="themeSection">
     <h2>
-        NTFS
+        NTFS New Technology File System
     </h2>
     <p>
         Welche vier Bestandteile speichert NTFS für eine kurze Datei? <br>
-        Wie speichert NTFS eine große Datei? Zeichnen Sie dazu auch ein Bild.
+        Wie speichert NTFS eine große Datei? Zeichnen Sie dazu auch ein Bild.<br>
+<br>
+        Alle Dateiinformationen als Datei gespeichert, auch Metadaten<br>
+        64-Bit Adressierung für große Dateien - Kleine Blockgrößen für große Partitionen möglich<br>
+        Sicherheit: Zugriffskontrolle pro Benutzer oder Gruppe, optionale Verschlüsselung<br>
+        Fehlertoleranz: ist ein Journaling File-System, Logging, RAID-Unterstützung<br>
     </p>        
+    <h3>
+        Datenstrukturen für eine Datei
+    </h3>
+    <p>
+        <span class="marked">File Object: </span>jeweils für Öffnen einer Datei<br>
+        <span class="marked">Stream Control Block: </span>jeweils für geöffneten Stream<br>
+        <span class="marked">File Control Block: </span>Datei-Referenz in die Master File Table<br>
+        BILD
+    </p>
+    <h3>
+        Dateiverwaltung
+    </h3>
+    <p>
+        Datei Referenz bezeichnet Datei/Verzeichnis in Partition<br>
+        Sequenznummer = wird hochgezählt für jede gleiche dateinummer<br>
+        Dateinummer = Index in Master File Table(MFT)<br>
+    </p>
+    <h3>
+        Aufbau NTFS Volumen(Partition)
+    </h3>
+    <p>
+        Boot Sector(BSC) = Boot Programm, #Sektoren pro Cluster<br>
+        MFT(Master File Table) = Pro Datei/Verzeichnis ein Eintrag, MFT selber auch Datei, ung wie Inode Tabelle<br>
+        System Files = Log-Datei(Änderungen an MFT), Volumen Datei(Größe, Name, VersionNummer), Bitmap-Datei(freie/belegte Cluster), Boot-Datei(Größe cluster/MFT Eintrag, Boot-Code), Quota-Tabelle, Bad-Cluster-Datei 
+    </p>
+    <h3>
+        MFT-Eintrag für kurze Datei
+    </h3>
+    <p>
+        attribute code<br>
+        standart info(Länge, MS-DOS Attribute, #Hard-Links, Zeitstempel Zugriffe, Sequenznummer der gültigen File-Ref)<br>
+        security descriptor: Zugriffskontrolle<br>
+        data: DAten direkt in der MFT abgelegt<br>
+        file name: in Datei Eintrag & Verzeichnis<br>
+    </p>
+    <h3>
+        MFT-Eintrag für lange Datei
+    </h3>
+    <p>
+        außerhalb der MFT in runs/extens abgelegt<br>
+        Datenbereich des MFT-Eintrags enthält nur Zeiger<br>
+        Falls 1 MFT nicht genügt, weitere alloziert<br>
+    </p>
+    <h3>
+        Aufbau kurze Verzeichniss
+    </h3>
+    <p>
+        ...
+    </p>
 </div>
 
 <div class="themeSection">
@@ -841,6 +1034,9 @@
         Kritische Abschnitte
     </h2>
     <p>
+        gemeinsame Var -> Syncen<br>
+        max 1 Thread im Kritischem Abschnitt<br>
+        Problem: Testen und Setzen des Flags geschieht nicht atomar, könnte während Prüfen/gerade fertig Thread umschalten und dann beide eintreten
         <a href="https://coconucos.cs.uni-duesseldorf.de/lehre/klausuren/BS_Klausuren/BSuSP_WS2021_Klausur_2.pdf" target="blank">
             2. KLAUSUR 2021
         </a>
@@ -849,11 +1045,139 @@
 
 <div class="themeSection">
     <h2>
-        Leser-Schreiber-Problem, Semaphor-Variablen
+        Lost-update Probleme
     </h2>
     <p>
-    
+        Inkrementierung unterbrochen, andere Thread ebenfalls inkrementiert -> 1mal verpasst<br>
     </p>        
+</div>
+
+<div class="themeSection">
+    <h2>
+        Wechselseitiger Ausschluss/mutal exclusion(Mutex)
+    </h2>
+    <p>
+        atomare Test-&-Set-Instruktion<br>
+    </p>        
+    <pre>
+        int lock=0; //0=not locked, 1=locked
+        void acquire(){
+            while Test_Ans_Set (lock_var); //busy polling
+        }
+
+        void release(){
+            lock = 0;
+        }
+    </pre>
+    <p>
+        In pthread mutex_init(pthread_mutex_t *mutex, NULL);<br>
+        pthread_mutex_destroy(*mutex);<br>
+        pthread_mutex_lock(*mutex);<br>
+        pthread_mutex_unlock(*mutex)<br>
+        Bedingungsvariablen:<br>
+        statisch: pthread_cond_t cond = PTHREAD_COND_INITIALIZER;<br>
+        int pthread_cond_wait(*cond, *mutex);<br>
+        Warten wird beendet wenn Signal für Bedingugnsvariable empfangen wird<br>
+        Dann versucht Sperre auf Mutex anzufordern -> vllt wieder blockiert<br>
+        Wakeup thread highest prio: int pthread_cond_signal(*cond);<br>
+        Wakeup all: int pthread_cond_broadcast(*cond);<br>
+        Spurious wakeups = wachen einfach so auf manchmal<br>
+    </p>
+    <pre>
+        int my_cond = 0;
+        void *threads (void *arg){
+            pthread_mutex_lock(&mutex);
+
+            while(!my_condition)
+                pthread_cond_wait(&cond, &mutex);
+        }
+    </pre>
+</div>
+
+<div class="themeSection">
+    <h2>
+        Semaphore
+    </h2>
+    <p>
+        Hauptsignal in Schiffahrt<br>
+        hier kein Busy-Polling im gegensatz zu Test&Set, alle wartenden Threads blockiert<br>
+        Semaphore mit Werten 0 und 1<br>
+        zählende Semaphore mit Werden 0..n<br>
+        Funktionen Intern mit Test&Set realisiert<br>
+        Haben eine queue für wartende Threads-TCB als Eintrag<br>
+    </p>        
+    <pre>
+        Initialisieren:
+        InitSem(semVar);
+
+        Passieren?:
+        P(semVar):
+        if(semVar > 0){
+            semVar = semVar -1
+        }else{
+            warten auf V(semVar)
+        }
+
+        Freigeben:
+        V(semVar):
+        if(Thread wartet auf semVar)
+            anstossen(Thread);
+        else
+            semVar = semVar + 1;
+    </pre>
+</div>
+
+<div class="themeSection">
+    <h2>
+        Leser-Schreiber-Problem mit Semaphoren
+    </h2>
+    <h3>
+        N Leser oder 1 Schreiber parallel erlaubt
+    </h3>
+    <pre>
+        int readcount = 0; //aktive Leser
+        semaphore mutex=1, wrt=1;
+
+        Leser(){
+            P(mutex); //Mit Leser sync.
+            readcount++;
+            if(readcount==1) //Kein Leser aktiv
+                P(wrt); //Schreiber blockieren
+            V(mutex);
+
+            reading();
+
+            P(mutex); //Mit Leser sync.
+            readcount--;
+            if(readcount == 0) //Keine Leser aktiv
+                V(wrt); //Schreiber zulassen
+            V(mutex);
+        }
+
+        Schreiber(){
+            P(wrt); //Nur 1 Schreiber
+            writing();
+            V(wrt);
+        }
+    </pre>
+    <h3>
+        N Erzeuger N Verbraucher
+    </h3>
+    <pre>
+        #include semaphore.h
+        int sem_init(sem_t *sem, int pshared, unsigned int value);
+        pshared = 0für Threads in ein Prozess != 0 für Prozesse
+        P(S): int sem_wait(*sem);
+        V(S): int sem_post(*sem);
+        int sem_destroy(*sem);
+        Beispiel
+    </pre>
+    <h2>
+        Deadlock(Threads blockiert), Livelock(Aktives Warten)
+    </h2>
+    <p>
+        wollen gegenseitig die ressource<br>
+    </p>
 </div>
 
 
