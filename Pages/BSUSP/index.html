@@ -16,10 +16,6 @@
     <h2>
         Busmaster- vs. programmed I/O-Datentransfer
     </h2>
-    <p>
-        Gerätesteuerung: CPU startet E/A-Auftrag durch Programmierung von Geräteregistern <br>
-        z.B: Kontrollregister, Statusregister, Befehlsregister, Datenregister, Indexregister, Datenpuffer(Anbindung per Busmastertransfer)
-    </p>
     <h3>Programmed I/O:</h3>
     <p>
         -CPU überträgt wortweise Daten aus Hauptspeicher zum Gerät <br>
@@ -27,11 +23,9 @@
     </p>
     <h3>Busmaster/Direkter Speicherzugriff:</h3>
     <p>
-        -CPU startet nur den Datentransfer <br>
-        -Eigentliche Übertragung direkt zwischen Hauptspeicher und Gerät <br>
-        -Direct Memory Access(DMA) für ISA-Geräte <br>
-        -Busmaster-Transfer für PCI-Geräte <br>
-        <span class="positiv">-CPU weiterarbeiten während Daten nebenläufig übertragen werden</span>
+        -CPU startet Datentransfer <br>
+        -Übertragung direkt zwischen Hauptspeicher und Gerät <br>
+        <span class="positiv">-CPU kann weiterarbeiten</span>
     </p>
 </div>
 
@@ -88,8 +82,7 @@
         Interrupt
     </h2>
     <p>
-        Ereignis das sofort ausgeführt werden soll von der CPU<br>
-        Das Betriebssystem behandelt Interrupts, indem es den Zustand des Programms sichert, den passenden Interrupt-Handler ausführt und danach den Zustand des Programms wiederherstellt.
+        Von BS behandelt mit passenden Interrupt-Handler, Systemaufruf
     </p>
     <h3>Software-Interrupt</h3>
     <p>
@@ -192,11 +185,10 @@
 
 <div class="themeSection">
     <h2>
-        Systemaufruf
+        Systemaufruf mmap
     </h2>
     <p>
-        Für sehr schnelle Ein- und Ausgaben will man das Umkopieren der Daten zwischen Userund Kernel-Mode vermeiden. Welcher Systemaufruf wird hierfür unter UNIX verwendet
-        und was passiert dabei?
+       mmap, BS mappt File direkt in Speicher, kann direkt benutzt werden
     </p>
 </div>
 
@@ -313,9 +305,7 @@
     <h2>
         Threadzustandsdiagramm
     </h2>
-    <p>
-        -Skizzieren
-    </p>
+    <img src="../../NotUsedImg/Threadzustandsdiagram.jpg">
 </div>
 
 <div class="themeSection">
@@ -590,9 +580,9 @@
         Vorraussetzungen
     </h3>
     <p>
-        Referenzen müssen identifiezierbar sein<br>
-        Typsichere Sprache<br>
-        GC muss Aufbau eines Speicherblocks und der Stackframes kennen(Wo zeiger, wo andere Variablen)<br>
+        -Referenzen müssen identifiezierbar sein<br>
+        -Typsichere Sprache<br>
+        -Aufbau Speicherblocks u. der Stackframes(Wo zeiger, wo andere Variablen)<br>
         -Die Info speichert Compiler in Symboltabelle
     </p>
     <h3>
@@ -632,17 +622,6 @@
         beschreiben wie Copying-Collector funkt.
     </h3>
 
-    <h3>
-        Inkrementeller Mark & Sweep Algorithmus
-    </h3>
-    <p>
-        Nebenläufiges(unterbrechbar)<br>
-        Blau: Block komplett untersucht<br>
-        Rot: Noch nicht inspiziert<br>
-        Grün: Bereits besucht aber nicht alle Nachfolger<br>
-        Terminiert wenn keine grünen Blöcke mehr<br>
-        Erfordert überwachung von Zeigerzuweisung(Wenn blauer block aufeinmal roten block ref.)<br>
-    </p>
     <h3>
         Kopierende Freispeichersammlung(Copying-Collector)
     </h3>
@@ -719,15 +698,6 @@
         Nach Meltdown und Spectre wird BS nicht mehr eingeblendet in Adressraum eigener Adressraum<br>
         32Bit -> 10 Bit Page Dir. -> 10 Bit Page Table -> 12 Bit Offset<br>
         <span class="negativ">Nachteil: </span>Langsamer<br>
-    </p>
-    <h3>
-        Invertierte Seitentabellen
-    </h3>
-    <p>
-        Vollständige Seitentabellen viel zu viele einträge(speicher) pro Prozess<br>
-        Besser 1 Eintrag pro Kachel als pro logische Seite<br>
-        1. Eintrag Kachel 0, 2. Eintrag Kachel 1...<br>
-
     </p>
     <h3>
         Translation Lookaside Buffer (TLB)
@@ -850,6 +820,15 @@
 
 <div class="themeSection">
     <h2>
+        Kernel page-table isolation (KPTI)
+    </h2>
+    <p>
+        getrennten Adressraum für BS, nur einsprung eingeblendet, gegen meltdown, TLB flushen<br>
+    </p>
+</div>
+
+<div class="themeSection">
+    <h2>
         Partition
     </h2>
     <p>
@@ -900,10 +879,39 @@
 <h1>4. Dateisysteme</h1>
 <div class="themeSection">
     <h2>
+        Erst Partitioniert dann mit FAT Formatiert
+    </h2> 
+</div>
+
+<div class="themeSection">
+    <h2>
+        Hard link
+    </h2>
+    <p>
+        Verweiß auf Inode<br>
+        Datei erst gelöscht wenn Hard Link Counter = 0<br>        
+    </p>    
+    <h2>
+        Symbolic Link
+    </h2>
+    <p>
+        Verweis auf Datei Name<br>
+        ungültig wenn Datei gelöscht<br>
+    </p>
+</div>
+
+<div class="themeSection">
+    <h2>
         Inodes
     </h2>
     <p>
-        -Inhalt in einem klassichen UNIX-Dateisystem
+        -Dateityp (reguläre Datei, Verzeichnis, symbolischer Link)
+        -Zugriffsrechte (Besitzer, Gruppe, andere)
+        -Besitzer und Gruppen-ID UID / GID
+        -Zeitstempel (z.B. Erstellungs-, Änderungs- und Zugriffszeit)
+        -Dateigröße
+        -Hardlink Counter
+        -Zeiger auf Datenblöcke
     </p>    
 </div>
 
