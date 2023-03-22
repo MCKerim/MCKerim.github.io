@@ -1107,31 +1107,17 @@
         Semaphore
     </h2>
     <p>
-        Hauptsignal in Schiffahrt<br>
-        hier kein Busy-Polling im gegensatz zu Test&Set, alle wartenden Threads blockiert<br>
-        Semaphore mit Werten 0 und 1<br>
-        zählende Semaphore mit Werden 0..n<br>
-        Funktionen Intern mit Test&Set realisiert<br>
-        Haben eine queue für wartende Threads-TCB als Eintrag<br>
+        Signal zum syncen, kein Busy-Polling / bei Test&Set wohl<br>
     </p>        
     <pre>
         Initialisieren:
         InitSem(semVar);
 
-        Passieren?:
-        P(semVar):
-        if(semVar > 0){
-            semVar = semVar -1
-        }else{
-            warten auf V(semVar)
-        }
+        Wenn Frei rechne, sonst warte:
+        P(semVar);
 
-        Freigeben:
+        Wenn einer wartet dann anstoßen, sonst nur sagen ist Frei:
         V(semVar):
-        if(Thread wartet auf semVar)
-            anstossen(Thread);
-        else
-            semVar = semVar + 1;
     </pre>
 </div>
 
@@ -1144,26 +1130,26 @@
     </h3>
     <pre>
         int readcount = 0; //aktive Leser
-        semaphore mutex=1, wrt=1;
+        semaphore reader=1, wrt=1; //1 Heißt ist 1 platz frei
 
         Leser(){
-            P(mutex); //Mit Leser sync.
+            P(reader); //Nur ein Leser hier rein, damit nur einmal Schreiber blockiert
             readcount++;
-            if(readcount==1) //Kein Leser aktiv
+            if(readcount==1) //Kein anderer Leser schon blockiert
                 P(wrt); //Schreiber blockieren
-            V(mutex);
+            V(reader);
 
             reading();
 
-            P(mutex); //Mit Leser sync.
+            P(reader); //Nur ein Leser hier rein
             readcount--;
-            if(readcount == 0) //Keine Leser aktiv
-                V(wrt); //Schreiber zulassen
-            V(mutex);
+            if(readcount == 0) //Keine Leser mehr aktiv
+                V(wrt); //Als letzter Schreiber entblocken
+            V(reader);
         }
 
         Schreiber(){
-            P(wrt); //Nur 1 Schreiber
+            P(wrt); //Nur einer kann hier rein und schreiben
             writing();
             V(wrt);
         }
@@ -1173,8 +1159,9 @@
     </h3>
     <pre>
         #include semaphore.h
+
         int sem_init(sem_t *sem, int pshared, unsigned int value);
-        pshared = 0für Threads in ein Prozess != 0 für Prozesse
+        pshared = 0 //für Threads in ein Prozess != 0 für Prozesse
         P(S): int sem_wait(*sem);
         V(S): int sem_post(*sem);
         int sem_destroy(*sem);
