@@ -1,5 +1,5 @@
 //Logo border fade animation
-logoImgFadeOut();
+/*logoImgFadeOut();
 
 function logoImgFadeIn() {
     let logo = document.getElementById("logoImg");
@@ -11,10 +11,10 @@ function logoImgFadeOut(){
     let logo = document.getElementById("logoImg");
     logo.className = logo.className.replace(" active", "");
     setTimeout(logoImgFadeIn, 1250);
-}
+}*/
 
 //Copyright year updater
-var date = new Date();
+let date = new Date();
 document.getElementById("copyrightYear").innerHTML = date.getFullYear();
 
 //Age updater
@@ -38,11 +38,11 @@ function updateAge(id, year, month, day)
 }
 
 //Job text writing animation
-var jobText = document.getElementById("jobText");
+const jobText = document.getElementById("jobText");
 const targetTextArr = ["Web-Designer.", "Web-Developer. ",  "Programmer.", "Programmer;", "Developer.", "Game-Developer", "Game-Designer.", "UI/UX-Designer", "console.log(" + '"' + "Hello World!" + '"' + ");"];
-var targetText = "";
-var randomNumber = 0;
-var lastRandomNumber = 0;
+let targetText = "";
+let randomNumber = 0;
+let lastRandomNumber = 0;
 
 setTimeout(() =>{changeText()}, 4000);
 function changeText(){
@@ -99,8 +99,8 @@ function removeChar(currentText)
     }
 }
 
-var thing = document.getElementById("blink");
-var blink = true;
+const thing = document.getElementById("blink");
+let blink = true;
 updateBlinker();
 function updateBlinker()
 {
@@ -122,10 +122,10 @@ function updateBlinker()
 }
 
 //Navigation bar
-var burger = document.getElementById("burger");
-var navBar = document.getElementById("navBar");
-var blackOverlay = document.getElementById("blackOverlay");
-var navBarItems = document.querySelectorAll('.navBar .navBarItem');
+const burger = document.getElementById("burger");
+const navBar = document.getElementById("navBar");
+const blackOverlay = document.getElementById("blackOverlay");
+const navBarItems = document.querySelectorAll('.navBar .navBarItem');
 
 burger.addEventListener("touchstart", () => {
     navBar.classList.toggle("navBarActive");
@@ -147,7 +147,7 @@ blackOverlay.addEventListener("click", () => {
     blackOverlay.classList.remove("blackOverlayShow");
 });
 
-var targetTop;
+let targetTop;
 function scrollHome(targetId)
 {
     if(targetId != null)
@@ -167,10 +167,10 @@ function scrollHome(targetId)
 }
 
 //Projects filter buttons
-var projectsPictures = document.getElementById("Projects_Pictures");
-var projectsList = projectsPictures.children;
-var lastButton;
-var selectedOnStart = document.getElementById("selectedOnStart");
+const projectsPictures = document.getElementById("Projects_Pictures");
+const projectsList = projectsPictures.children;
+let lastButton;
+const selectedOnStart = document.getElementById("selectedOnStart");
 
 showProjects(selectedOnStart, "Proudest");
 function showProjects(button, tag)
@@ -186,33 +186,47 @@ function showProjects(button, tag)
     }
     button.classList.add("pressed");
 
-    for (let i = 0; i < projectsList.length; i++) {
-        let currentTags = projectsList[i].getElementsByClassName("tags")[0].innerHTML;
+    for (const element of projectsList) {
+        let currentTags = element.getElementsByClassName("tags")[0].innerHTML;
 
         if(currentTags.match(tag) || (tag === "ShowAll" && !currentTags.match("DontShowOnAll")))
         {
-            projectsList[i].classList.remove("makeInvis");
+            element.classList.remove("makeInvis");
         }
         else
         {
-            projectsList[i].classList.add("makeInvis");
+            element.classList.add("makeInvis");
         }
     }
 }
 
+const darkModeIcon = document.getElementById("darkModeIcon");
+const lightModeIcon = document.getElementById("lightModeIcon");
+
 function toggleDarkMode(toggle){
-    var r = document.querySelector(':root');
+    let r = document.querySelector(':root');
     if(toggle.checked)
     {
-        r.style.setProperty('--main-color', '#969696');
-        r.style.setProperty('--second-color', '#1d1d1d');
-        r.style.setProperty('--accent-color', '#ffffff');
-        r.style.setProperty('--link-active-color', '#ffffff');
+        // Dark mode
+        r.style.setProperty('--main-color', '#777161'); // Text usw
+        r.style.setProperty('--second-color', '#1b1811'); // Background
+        r.style.setProperty('--accent-color', '#DB534D');
+        r.style.setProperty('--link-active-color', '#FF7973');
+
+        // Change dark mode icon visible to hidden
+        darkModeIcon.style.visibility = "hidden";
+        lightModeIcon.style.visibility = "visible";
     }
-    else{
+    else
+    {
+        // Light mode
         r.style.setProperty('--main-color', '#1b1811');
         r.style.setProperty('--second-color', '#edece6');
         r.style.setProperty('--accent-color', '#ff6961');
         r.style.setProperty('--link-active-color', '#ffa19a');
+
+        // Change light mode icon visible to hidden
+        lightModeIcon.style.visibility = "hidden";
+        darkModeIcon.style.visibility = "visible";
     }
 }
