@@ -9,9 +9,18 @@ body{
     color: #1b1811;
 }
 
-h1{
-    font-size: 50px;
-    margin-top: 10px;
+
+/*Black Chocolate #1b1811 Cynical Black #171717 Night Slate Black #040707*/
+h1 {
+    margin-top: 25px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    color:  #edece6;
+    letter-spacing: 10px;
+    background-color:  #1b1811;
+    padding: 20px 0px;
+    font-size: 40px;
 }
 
 .heading{

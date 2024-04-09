@@ -11,7 +11,7 @@ var minAmountOfSnakesToPlay = 1;
 
 function addSnakeButtonPressed() {
     if (snakes.length < keyPrefabs.length && !gameIsRunning) {
-        var newSnake = new Snake(snakes.length, colorPrefabs[snakes.length][0], colorPrefabs[snakes.length][1]);
+        var newSnake = new Snake(snakes.length, namePrefabs[snakes.length], colorPrefabs[snakes.length][0], colorPrefabs[snakes.length][1]);
         newSnake.changeInputKeys(keyPrefabs[snakes.length][0], keyPrefabs[snakes.length][1], keyPrefabs[snakes.length][2], keyPrefabs[snakes.length][3]);
         snakes.push(newSnake);
 
@@ -20,7 +20,7 @@ function addSnakeButtonPressed() {
         liElement.id = snakes.length;
 
         let pElement1 = document.createElement("p");
-        let textElement1 = document.createTextNode("Snake " + snakes.length);
+        let textElement1 = document.createTextNode("Snake " + snakes[snakes.length - 1].getName());
         pElement1.appendChild(textElement1);
 
         let pElement2 = document.createElement("p");
@@ -62,6 +62,8 @@ var keyPrefabsInChar = [
     ["Ö", "#", "Ü", "Ä"]
 ];
 
+var namePrefabs = ["Slinky", "Squiggle", "Wiggle", "Monty"];
+
 var colorPrefabs = [
     ["rgb(202, 82, 75)", "rgb(255,105,97)"], //red
     ["rgb(60, 60, 255)", "rgb(100, 100, 255)"], //blue 
@@ -95,8 +97,9 @@ function removeSnakeButtonPressed() {
 var snakes = [];
 var snakeSettingsUi = [];
 
-function Snake(personalId, newColor, newBodyColor) {
+function Snake(personalId, newName, newColor, newBodyColor) {
     this.personalId = personalId;
+    this.name = newName;
     this.color = newColor;
     this.bodyColor = newBodyColor;
     this.r = 10;
@@ -281,6 +284,10 @@ function Snake(personalId, newColor, newBodyColor) {
 
     this.getPersonalId = function () {
         return this.personalId;
+    };
+
+    this.getName = function () {
+        return this.name;
     };
 
     this.getColor = function () {
@@ -508,16 +515,16 @@ function endGame() {
 
     if (draw) {
         titelText.innerHTML = "It's A Draw!";
-        titelText.style.color = "#1b1811"
+        titelText.style.color = "#edece6"
         titelText.style.textShadow = "";
     }
     else {
         winner.addWin();
         if (bestScore == 1) {
-            titelText.innerHTML = "Snake " + (winner.getPersonalId() + 1) + " won by " + bestScore + " point!";
+            titelText.innerHTML = "Snake " + winner.getName() + " won by " + bestScore + " point!";
         }
         else {
-            titelText.innerHTML = "Snake " + (winner.getPersonalId() + 1) + " won by " + bestScore + " points!";
+            titelText.innerHTML = "Snake " + winner.getName() + " won by " + bestScore + " points!";
         }
         titelText.style.color = winner.getColor();
         titelText.style.textShadow = "2px 0 0 #1b1811, -2px 0 0 #1b1811, 0 2px 0 #1b1811, 0 -2px 0 #1b1811, 1px 1px #1b1811, -1px -1px 0 #1b1811, 1px -1px 0 #1b1811, -1px 1px 0 #1b1811";
