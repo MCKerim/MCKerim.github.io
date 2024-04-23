@@ -4,6 +4,7 @@
     --second-color: #edece6;
     --accent-color: #ff6961;
     --link-active-color: #ffa19a;
+    --image-brightness: 1;
 }
 
 .darkModeToggle {
@@ -327,6 +328,7 @@ img{
     transition: all 0.4s ease-in-out;
     animation: projectsAnimIn 0.5s ease-in-out 0s 1;
     margin: 20px;
+    filter: brightness(var(--image-brightness));
 }
 
 .noAnim{
