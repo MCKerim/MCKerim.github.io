@@ -532,7 +532,8 @@ img{
 .profilePic{
     height: 105%;
     width: 105%;
-    transform: translateY(-35px) translateX(15px);
+    transform: translateY(-40px) translateX(-17px);
+    border-radius: 30px;
 }
 
 @keyframes circleIn {
@@ -862,10 +863,10 @@ footer{
         padding: 10px 0px;
     }
 
-    .profilePic{
-        transform: translateY(0px) translateX(0px);
-        height: 100%;
-        width: 100%;
+    .profilePic {
+        height: 105%;
+        width: 105%;
+        transform: translateY(4px) translateX(-11px);
     }
 }
 
