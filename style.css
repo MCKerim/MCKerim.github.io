@@ -693,6 +693,27 @@ img{
     cursor: crosshair;
 }
 
+.greyIconInLeft{
+    rotate: -25deg;
+    translate: 20px 0px;
+}
+
+.greyIconInRight{
+    rotate: 25deg;
+    translate: -20px 0px;
+}
+
+.greyIcon:hover .greyIconInLeft{
+    rotate: -0deg;
+    translate: 5px -10px;
+}
+
+.greyIcon:hover .greyIconInRight{
+    rotate: 0deg;
+    translate: -5px -10px;
+}
+
+
 .greyIconSmall{
     margin: 0px;
     height: 40px;
