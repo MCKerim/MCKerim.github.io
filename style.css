@@ -704,7 +704,7 @@ img{
 }
 
 .greyIcon:hover .greyIconInLeft{
-    rotate: -0deg;
+    rotate: 0deg;
     translate: 5px -10px;
 }
 
@@ -713,6 +713,12 @@ img{
     translate: -5px -10px;
 }
 
+.brLine{
+    width: 100%;
+    height: 1px;
+    background-color: var(--second-color);
+    margin: 5px 0px;
+}
 
 .greyIconSmall{
     margin: 0px;
@@ -730,7 +736,7 @@ img{
     transform: translate(-50%, -110%);
 }
 
-.popupText{
+.popupText {
     min-width: 200px;
     background-color: var(--main-color);
     color: var(--second-color);
@@ -744,6 +750,18 @@ img{
     opacity: 0%;
     transition: all 0.3s ease-in-out;
     pointer-events: none;
+}
+
+.popupList {
+    list-style-position: outside;
+    margin: 0px;
+    margin-left: 20px;
+    padding: 0;
+    text-align: left;
+}
+
+ul li {
+    margin-bottom: 2.5px;
 }
 
 .popupText::after {
