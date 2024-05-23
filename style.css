@@ -891,7 +891,12 @@ footer{
     }
 
     .greyIconBig{
-        margin: 0px 30px;
+        height: 64px;
+        width: 64px;
+    }
+
+    .skillIconTitel{
+        font-size: 16px;
     }
 
     .popupText{
