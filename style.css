@@ -439,7 +439,6 @@ img{
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     flex: 1;
-    min-width: 100px;
 }
 
 .filterButton:hover{
@@ -676,6 +675,8 @@ img{
     display: flex; 
     justify-content: space-evenly; 
     flex-wrap: wrap;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .greyIconsContainerProject{
@@ -685,8 +686,7 @@ img{
 
 .greyIconContainer{
     position: relative;
-    margin-left: 20px;
-    margin-right: 20px;
+    flex: 1 0 30%;
 }
 
 .greyIcon{
@@ -708,6 +708,7 @@ img{
 .greyIcon:hover .greyIconInLeft{
     rotate: 0deg;
     translate: 5px -10px;
+    transform: scale(1);
 }
 
 .greyIcon:hover .greyIconInRight{
@@ -854,6 +855,10 @@ footer{
 
 @media screen and (max-width: 600px)
 {
+    .greyIconContainer{
+        flex: 1 0 40%;
+    }
+
     .jobText{
         white-space: pre;
     }
