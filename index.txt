@@ -1,1 +1,1 @@
-$file:/workspace/kblanks-site/index.txt
+PLACEHOLDER_WILL_REPLACE
