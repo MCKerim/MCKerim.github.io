@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" fill="none" role="img" aria-label="Phone frame">
+  <defs>
+    <linearGradient id="chassis" x1="40" y1="20" x2="350" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFB06A"/>
+      <stop offset="0.35" stop-color="#E88840"/>
+      <stop offset="0.7" stop-color="#C85A1A"/>
+      <stop offset="1" stop-color="#A84814"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="60" y1="40" x2="330" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity="0.35"/>
+      <stop offset="0.25" stop-color="#fff" stop-opacity="0.06"/>
+      <stop offset="0.55" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#501E0A" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <!-- Chassis -->
+  <rect x="8" y="8" width="374" height="828" rx="68" fill="url(#chassis)"/>
+  <rect x="8" y="8" width="374" height="828" rx="68" fill="url(#sheen)"/>
+  <!-- Side buttons -->
+  <rect x="2" y="148" width="6" height="28" rx="2" fill="#D06A28"/>
+  <rect x="2" y="196" width="6" height="56" rx="2" fill="#D06A28"/>
+  <rect x="2" y="268" width="6" height="56" rx="2" fill="#D06A28"/>
+  <rect x="382" y="230" width="6" height="72" rx="2" fill="#D06A28"/>
+  <!-- Screen well -->
+  <rect x="22" y="22" width="346" height="800" rx="54" fill="#0A0A0A"/>
+  <!-- Display -->
+  <rect x="30" y="30" width="330" height="784" rx="46" fill="#12110F"/>
+  <!-- Dynamic Island -->
+  <rect x="138" y="42" width="114" height="34" rx="17" fill="#000"/>
+  <circle cx="228" cy="59" r="6" fill="#1A1A22" stroke="rgba(255,255,255,0.1)"/>
+</svg>
