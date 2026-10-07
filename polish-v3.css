@@ -1,0 +1,27 @@
+/* polish-v3: sticker tilt/ghost + stars scroll with page */
+.sticker-portrait {
+  transform: rotate(-10deg) !important;
+  filter: none !important;
+  will-change: auto !important;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.sticker-portrait__img {
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35)) !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sticker-portrait:hover {
+    transform: rotate(-6deg) translateY(-4px) scale(1.02) !important;
+    filter: none !important;
+  }
+  .sticker-portrait:hover .sticker-portrait__img {
+    filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.6))
+      drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35)) !important;
+  }
+}
+canvas.pointer-events-none.fixed {
+  position: absolute !important;
+  inset: auto 0 auto 0 !important;
+  top: 0 !important;
+  height: auto !important;
+}
